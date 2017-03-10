@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKHTTPProtocol.h"
+#import "LKTabURLProtocol.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

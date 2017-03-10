@@ -17,6 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [NSURLProtocol registerClass:[LKHTTPProtocol class]];
+    [NSURLProtocol registerClass:[LKTabURLProtocol class]];
     return YES;
 }
 
