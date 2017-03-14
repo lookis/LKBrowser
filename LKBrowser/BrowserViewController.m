@@ -13,10 +13,11 @@ static float const PROGRESS_VIEW_MAX_BEFORE_LOADED = (float)0.95;
 static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
 @interface BrowserViewController () <UIWebViewDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextField *textAddress;
 @property (weak, nonatomic) IBOutlet UIButton *cancel;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonGoBack;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonGoForward;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonReload;
@@ -44,38 +45,38 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 #pragma AddressBar
 
 - (IBAction)cancel:(id)sender{
-    [_textField resignFirstResponder];
+    [_textAddress resignFirstResponder];
 
 }
 
 - (IBAction)gotoUrl:(id)sender{
     NSLog(@"gotoUrl");
     NSString *url = nil;
-    if([[_textField text] hasPrefix:@"http://"] || [[_textField text] hasPrefix:@"https://"]){
-        url = [_textField text];
+    if([[_textAddress text] hasPrefix:@"http://"] || [[_textAddress text] hasPrefix:@"https://"]){
+        url = [_textAddress text];
     }else{
-        url = [NSString stringWithFormat:@"http://%@", [_textField text]];
+        url = [NSString stringWithFormat:@"http://%@", [_textAddress text]];
     }
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-    [_textField resignFirstResponder];
+    [_textAddress resignFirstResponder];
 }
 
 - (IBAction)startEditing:(id)sender{
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_textField selectAll:nil];
+        [_textAddress selectAll:nil];
     });
 }
 
 - (IBAction)endEditing:(id)sender{
-    [_textField setText: [[[_webView request]URL] absoluteString]];
+    [_textAddress setText: [[[_webView request]URL] absoluteString]];
 }
 
 #pragma UIWebViewDelegate
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     NSLog(@"webViewDidStartLoad");
-    if(![_textField isFirstResponder]){
-        [_textField setText: [[[_webView request]URL] absoluteString]];
+    if(![_textAddress isFirstResponder]){
+        [_textAddress setText: [[[_webView request]URL] absoluteString]];
     }
     [_progressBar setHidden:NO];
     [_progressBar setProgress:0.0 animated:NO];
@@ -89,8 +90,8 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     NSLog(@"webViewDidFinishLoad");
-    if(![_textField isFirstResponder]){
-        [_textField setText: [[[_webView request]URL] absoluteString]];
+    if(![_textAddress isFirstResponder]){
+        [_textAddress setText: [[[_webView request]URL] absoluteString]];
     }
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{
@@ -99,6 +100,20 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     [CATransaction setAnimationDuration:0.5];
     [_progressBar setProgress:1.0 animated:YES];
     [CATransaction commit];
+}
+
+#pragma Toolbar Display
+
+- (IBAction)hideToolbar:(id)sender{
+    [UIView animateWithDuration:1.0 animations:^{
+        [_toolbar setHidden:YES];
+    }];
+}
+
+- (IBAction)showToolbar:(id)sender{
+    [UIView animateWithDuration:1.0 animations:^{
+        [_toolbar setHidden:NO];
+    }];
 }
 
 #pragma UITab

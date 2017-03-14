@@ -90,12 +90,13 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Cce-6H-zEB"/>
-                                    <outletCollection property="gestureRecognizers" destination="90q-yj-fVB" appends="YES" id="9E0-Mb-RKY"/>
-                                    <outletCollection property="gestureRecognizers" destination="u9C-eB-0RI" appends="YES" id="JTW-yc-g9T"/>
                                 </connections>
                             </webView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYP-fO-gKO">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7j2-gE-kpx"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem image="backward" style="plain" id="oR8-Rz-NBb">
                                         <connections>
@@ -128,8 +129,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <progressView opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="41H-7T-zhi">
-                                <rect key="frame" x="0.0" y="58" width="320" height="2"/>
+                            <progressView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="41H-7T-zhi">
+                                <rect key="frame" x="0.0" y="58" width="320" height="2.5"/>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -137,20 +138,23 @@
                             <constraint firstItem="41H-7T-zhi" firstAttribute="top" secondItem="sFV-3b-Jm3" secondAttribute="bottom" constant="8" id="1Zm-Co-eaM"/>
                             <constraint firstItem="hYP-fO-gKO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2pL-Fr-9CB"/>
                             <constraint firstItem="41H-7T-zhi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6De-NG-ibQ"/>
+                            <constraint firstItem="njl-oV-wWC" firstAttribute="bottom" secondItem="hYP-fO-gKO" secondAttribute="top" id="DKc-Ci-BD5"/>
                             <constraint firstItem="sFV-3b-Jm3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EZF-Kb-Xy6"/>
                             <constraint firstAttribute="trailing" secondItem="41H-7T-zhi" secondAttribute="trailing" id="Gda-MO-xYH"/>
                             <constraint firstAttribute="trailing" secondItem="hYP-fO-gKO" secondAttribute="trailing" id="IGz-es-icf"/>
                             <constraint firstItem="njl-oV-wWC" firstAttribute="top" secondItem="sFV-3b-Jm3" secondAttribute="bottom" constant="8" symbolic="YES" id="KPf-5L-r8P"/>
                             <constraint firstAttribute="trailing" secondItem="njl-oV-wWC" secondAttribute="trailing" id="UYY-rl-lOw"/>
                             <constraint firstItem="njl-oV-wWC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Vd8-j2-byh"/>
-                            <constraint firstItem="njl-oV-wWC" firstAttribute="top" secondItem="7g6-h2-9Dt" secondAttribute="bottom" constant="8" id="bML-6t-SHI"/>
                             <constraint firstAttribute="trailing" secondItem="7g6-h2-9Dt" secondAttribute="trailing" constant="8" id="bfA-vE-AZJ"/>
-                            <constraint firstItem="hYP-fO-gKO" firstAttribute="top" secondItem="njl-oV-wWC" secondAttribute="bottom" id="iLR-lm-pIA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hYP-fO-gKO" secondAttribute="bottom" id="kX4-Aj-W2e"/>
                             <constraint firstItem="7g6-h2-9Dt" firstAttribute="leading" secondItem="sFV-3b-Jm3" secondAttribute="trailing" constant="8" id="ksE-SA-4EC"/>
                             <constraint firstItem="sFV-3b-Jm3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="z7j-fk-7xz"/>
                             <constraint firstItem="7g6-h2-9Dt" firstAttribute="centerY" secondItem="sFV-3b-Jm3" secondAttribute="centerY" id="zGR-1B-tQb"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="90q-yj-fVB" appends="YES" id="cvT-Dp-S9r"/>
+                            <outletCollection property="gestureRecognizers" destination="u9C-eB-0RI" appends="YES" id="Nfy-UI-C7p"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="buttonGoBack" destination="oR8-Rz-NBb" id="086-52-Tvq"/>
@@ -160,7 +164,8 @@
                         <outlet property="buttonTabs" destination="YZj-JE-rbE" id="oeO-y9-7nC"/>
                         <outlet property="cancel" destination="7g6-h2-9Dt" id="QVY-By-q6T"/>
                         <outlet property="progressBar" destination="41H-7T-zhi" id="nKg-ce-irk"/>
-                        <outlet property="textField" destination="sFV-3b-Jm3" id="n73-ta-7CL"/>
+                        <outlet property="textAddress" destination="sFV-3b-Jm3" id="LlL-Df-jPr"/>
+                        <outlet property="toolbar" destination="hYP-fO-gKO" id="tZm-Fe-oYG"/>
                         <outlet property="webView" destination="njl-oV-wWC" id="8wY-JF-q1W"/>
                     </connections>
                 </viewController>
