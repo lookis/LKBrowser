@@ -79,7 +79,7 @@
                                     <constraint firstAttribute="width" constant="66" id="bgh-m7-XE9"/>
                                     <constraint firstAttribute="height" constant="30" id="uQV-1N-pfk"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Cancel"/>
                                 <connections>
                                     <action selector="cancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dKX-bN-uie"/>
                                 </connections>
@@ -87,8 +87,11 @@
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njl-oV-wWC">
                                 <rect key="frame" x="0.0" y="58" width="320" height="466"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Cce-6H-zEB"/>
+                                    <outletCollection property="gestureRecognizers" destination="90q-yj-fVB" appends="YES" id="9E0-Mb-RKY"/>
+                                    <outletCollection property="gestureRecognizers" destination="u9C-eB-0RI" appends="YES" id="JTW-yc-g9T"/>
                                 </connections>
                             </webView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYP-fO-gKO">
@@ -162,6 +165,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="90q-yj-fVB">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="goBack:" destination="BYZ-38-t0r" id="TAa-au-MIv"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="u9C-eB-0RI">
+                    <rectEdge key="edges" right="YES"/>
+                    <connections>
+                        <action selector="goForward:" destination="BYZ-38-t0r" id="lz6-xU-JeS"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="378.39999999999998" y="116.49175412293854"/>
         </scene>
