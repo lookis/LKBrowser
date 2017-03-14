@@ -12,7 +12,7 @@ static float const PROGRESS_VIEW_INTERVAL = (float)1.0/60;
 static float const PROGRESS_VIEW_MAX_BEFORE_LOADED = (float)0.95;
 static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
-@interface BrowserViewController () <UIWebViewDelegate>
+@interface BrowserViewController () <UIWebViewDelegate, UIActivityItemSource>
 @property (weak, nonatomic) IBOutlet UITextField *textAddress;
 @property (weak, nonatomic) IBOutlet UIButton *cancel;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -41,6 +41,17 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (void)renderButtons{
+    //    [_buttonGoBack setEnabled:NO];
+    //    [_buttonGoForward setEnabled:NO];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 50 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+        [_buttonGoBack setEnabled:[_webView canGoBack]];
+        [_buttonGoForward setEnabled:[_webView canGoForward]];
+    });
+}
+
 
 #pragma AddressBar
 
@@ -137,25 +148,33 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 }
 
 - (IBAction)share:(id)sender{
-    NSArray * activityItems = @[_webView.request.URL];
+    
+    NSArray * activityItems = @[self];
     NSArray * applicationActivities = nil;
-    NSArray * excludeActivities = @[UIActivityTypeAssignToContact, UIActivityTypeMessage];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:applicationActivities];
-    activityViewController.excludedActivityTypes = excludeActivities;
     [self presentViewController:activityViewController animated:YES completion:nil];
+    
 }
 
 - (IBAction)tabs:(id)sender{
     
 }
 
-- (void)renderButtons{
-//    [_buttonGoBack setEnabled:NO];
-//    [_buttonGoForward setEnabled:NO];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 50 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-        [_buttonGoBack setEnabled:[_webView canGoBack]];
-        [_buttonGoForward setEnabled:[_webView canGoForward]];
-    });
+
+#pragma mark - UIActivityItemSource Protocol
+
+- (nullable id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(UIActivityType)activityType{
+    NSLog(@"activityType1: %@", activityType);
+    return _webView.request.URL;
+}
+
+- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController {
+    return _webView.request.URL;
+}
+
+- (NSString *)activityViewController:(UIActivityViewController *)activityViewController dataTypeIdentifierForActivityType:(NSString *)activityType {
+    NSLog(@"activityType3: %@", activityType);
+    return @"org.appextension.find-browser-action";
 }
 
 @end
