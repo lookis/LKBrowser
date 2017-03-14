@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LKHTTPProtocol : NSURLProtocol
+@interface MyURLProtocol : NSURLProtocol
 
 @end

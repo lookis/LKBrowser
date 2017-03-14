@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MyURLProtocol.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +18,38 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [NSURLProtocol registerClass:[LKHTTPProtocol class]];
-    [NSURLProtocol registerClass:[LKTabURLProtocol class]];
+//    [NSURLProtocol registerClass:[MyURLProtocol class]];
+//    [NSURLProtocol registerClass:[LKHTTPProtocol class]];
+    
+    
+    // Log File
+//    NSString *tmpDirectory = NSTemporaryDirectory();
+//    NSString *logFile = [tmpDirectory stringByAppendingPathComponent:@"shadowsocks.log"];
+//    
+//    const profile_t EXAMPLE_PROFILE = {
+//        .remote_host = "192.241.222.150",
+//        .local_addr = "127.0.0.1",
+//        .method = "aes-256-cfb",
+//        .password = "12345679",
+//        .remote_port = 8389,
+//        .local_port = 1081,
+//        .timeout = 600,
+//        .acl = NULL,
+//        .log = [logFile UTF8String],
+//        .fast_open = 0,
+//        .mode = 0,
+//        .verbose = 0
+//    };
+    
+    // Queue
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+//        int ret = start_ss_local_server(EXAMPLE_PROFILE);
+//        NSLog(@"%@ return: %i", @"start_ss_local_server", ret);
+//        NSLog(@"logfile: %@", logFile);
+//    }];
+//    [queue addOperation:operation];
+    
     return YES;
 }
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LKHTTPProtocol.h"
-#import "LKTabURLProtocol.h"
+#import "shadowsocks.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

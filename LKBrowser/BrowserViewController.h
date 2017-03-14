@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LKTabController.h"
+//#import "LKTabViewController.h"
 
 @interface BrowserViewController : UIViewController
 

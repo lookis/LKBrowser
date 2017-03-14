@@ -1,26 +1,25 @@
 //
-//  LKHTTPProtocol.m
+//  MyURLProtocol.m
 //  URLProtocolExample
 //
 //  Created by Lookis on 06/03/2017.
 //  Copyright © 2017 Lookis. All rights reserved.
 //
 
-#import "LKHTTPProtocol.h"
+#import "MyURLProtocol.h"
 
-static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
-
-@interface LKHTTPProtocol () <NSURLSessionDataDelegate>
+@interface MyURLProtocol () <NSURLSessionDataDelegate>
 @property (nonatomic, strong) NSURLSessionTask *sessionTask;
-@property (nonatomic, strong) NSURLSession *session;
 @end
 
-@implementation LKHTTPProtocol
+@implementation MyURLProtocol
 
 #pragma NSURLProtocol
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    if ([NSURLProtocol propertyForKey:URLProtocolProcessedKey inRequest:request]) {
+    static NSUInteger requestCount = 0;
+    NSLog(@"Request #%lu: URL = %@", (unsigned long)requestCount++, request.URL.absoluteString);
+    if ([NSURLProtocol propertyForKey:@"MyURLProtocolHandledKey" inRequest:request]) {
         return NO;
     }
     return YES;
@@ -37,7 +36,7 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
 - (void)startLoading {
     NSLog(@"startLoading %@", self);
     NSMutableURLRequest *newRequest = [self.request mutableCopy];
-    [NSURLProtocol setProperty:@YES forKey:URLProtocolProcessedKey inRequest:newRequest];
+    [NSURLProtocol setProperty:@YES forKey:@"MyURLProtocolHandledKey" inRequest:newRequest];
     
     
     NSDictionary *dict = @{
@@ -47,8 +46,7 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
                            };
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [configuration setConnectionProxyDictionary:dict];
-    _session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-    self.sessionTask = [_session dataTaskWithRequest:newRequest];
+    self.sessionTask = [[NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil] dataTaskWithRequest:newRequest];
     [self.sessionTask resume];
 }
 
@@ -56,17 +54,14 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
     NSLog(@"stopLoading %@", self);
     [self.sessionTask cancel];
     self.sessionTask = nil;
-    [_session finishTasksAndInvalidate];
-    _session = nil;
 }
 
 #pragma NSURLSessionDataDelegate
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)newRequest completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler{
-    NSMutableURLRequest *redirectRequest = [newRequest mutableCopy];
-    [[self class] removePropertyForKey:URLProtocolProcessedKey inRequest:redirectRequest];
-    [[self client] URLProtocol:self wasRedirectedToRequest:redirectRequest redirectResponse:response];
-    [self.sessionTask cancel];
-    [[self client] URLProtocol:self didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler{
+    NSLog(@"willPerformHTTPRedirection");
+    [self.client URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
+    completionHandler(request);
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler{
@@ -81,7 +76,7 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
 }
 
 - (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error{
-    NSLog(@"didBecomeInvalidWithError %@", error);
+    NSLog(@"didBecomeInvalidWithError");
     [self.client URLProtocol:self didFailWithError:error];
 }
 
@@ -93,5 +88,4 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
         [self.client URLProtocolDidFinishLoading:self];
     }
 }
-
 @end
