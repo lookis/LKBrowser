@@ -174,7 +174,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
 - (NSString *)activityViewController:(UIActivityViewController *)activityViewController dataTypeIdentifierForActivityType:(NSString *)activityType {
     NSLog(@"activityType3: %@", activityType);
-    return @"org.appextension.find-browser-action";
+    return @"org.appextension.fill-browser-action";
 }
 
 @end
