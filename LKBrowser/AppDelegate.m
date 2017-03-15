@@ -36,7 +36,7 @@
         .timeout = 600,
         .acl = NULL,
         .log = [logFile UTF8String],
-        .fast_open = 0,
+        .fast_open = 1,
         .mode = 0,
         .verbose = 0
     };

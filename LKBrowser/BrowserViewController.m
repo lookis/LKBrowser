@@ -37,7 +37,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]];
     [_panRecognizer setDelegate:self];
     [[_webView scrollView] addGestureRecognizer:_panRecognizer];
     [_webView loadRequest:request];
@@ -92,26 +92,29 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
 #pragma UIWebViewDelegate
 
-- (void)webViewDidStartLoad:(UIWebView *)webView{
-    NSLog(@"webViewDidStartLoad");
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     if(![_textAddress isFirstResponder]){
-        [_textAddress setText: [[[_webView request]URL] absoluteString]];
+        [_textAddress setText: [request.URL absoluteString]];
     }
     [_progressBar setHidden:NO];
     [_progressBar setProgress:0.0 animated:NO];
     [NSTimer scheduledTimerWithTimeInterval:PROGRESS_VIEW_INTERVAL repeats:YES block:^(NSTimer *timer){
         if (_progressBar.progress < PROGRESS_VIEW_MAX_BEFORE_LOADED){
             [_progressBar setProgress: [_progressBar progress] + (PROGRESS_VIEW_MAX_BEFORE_LOADED/PROGRESS_VIEW_SUPPOSED_FINISH * PROGRESS_VIEW_INTERVAL) animated:YES];
+        }else{
+            [timer invalidate];
         }
     }];
     [self renderButtons];
+    return YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     NSLog(@"webViewDidFinishLoad");
-    if(![_textAddress isFirstResponder]){
-        [_textAddress setText: [[[_webView request]URL] absoluteString]];
-    }
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{
         [_progressBar setHidden:YES];

@@ -53,7 +53,6 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
 }
 
 - (void)stopLoading {
-    NSLog(@"stopLoading %@", self);
     [self.sessionTask cancel];
     self.sessionTask = nil;
     [_session finishTasksAndInvalidate];
@@ -70,23 +69,19 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler{
-    NSLog(@"didReceiveResponse");
     [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
     completionHandler(NSURLSessionResponseAllow);
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data{
-    NSLog(@"didReceiveData");
     [self.client URLProtocol:self didLoadData:data];
 }
 
 - (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error{
-    NSLog(@"didBecomeInvalidWithError %@", error);
     [self.client URLProtocol:self didFailWithError:error];
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error{
-    NSLog(@"didCompleteWithError %@", error);
     if (error && error.code != NSURLErrorCancelled) {
         [self.client URLProtocol:self didFailWithError:error];
     } else {
