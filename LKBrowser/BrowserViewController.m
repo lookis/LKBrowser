@@ -7,15 +7,18 @@
 //
 
 #import "BrowserViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 static float const PROGRESS_VIEW_INTERVAL = (float)1.0/60;
 static float const PROGRESS_VIEW_MAX_BEFORE_LOADED = (float)0.95;
 static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
-@interface BrowserViewController () <UIWebViewDelegate, UIActivityItemSource>
+@interface BrowserViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textAddress;
 @property (weak, nonatomic) IBOutlet UIButton *cancel;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonGoBack;
@@ -23,6 +26,9 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonReload;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonShare;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonTabs;
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panRecognizer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewTopConstraint;
 
 @end
 
@@ -32,6 +38,8 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+    [_panRecognizer setDelegate:self];
+    [[_webView scrollView] addGestureRecognizer:_panRecognizer];
     [_webView loadRequest:request];
     [self renderButtons];
 }
@@ -113,20 +121,6 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     [CATransaction commit];
 }
 
-#pragma Toolbar Display
-
-- (IBAction)hideToolbar:(id)sender{
-    [UIView animateWithDuration:1.0 animations:^{
-        [_toolbar setHidden:YES];
-    }];
-}
-
-- (IBAction)showToolbar:(id)sender{
-    [UIView animateWithDuration:1.0 animations:^{
-        [_toolbar setHidden:NO];
-    }];
-}
-
 #pragma UITab
 
 - (IBAction)goBack:(id)sender{
@@ -148,10 +142,12 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 }
 
 - (IBAction)share:(id)sender{
+    NSDictionary *item = @{@"url_string" : _webView.request.URL.absoluteString};
+    NSItemProvider *itemProvider = [[NSItemProvider alloc] initWithItem:item typeIdentifier:@"org.appextension.fill-browser-action"];
+    NSExtensionItem *extensionItem = [[NSExtensionItem alloc] init];
+    extensionItem.attachments = @[ itemProvider];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[ extensionItem, _webView.request.URL]  applicationActivities:nil];
     
-    NSArray * activityItems = @[self];
-    NSArray * applicationActivities = nil;
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:applicationActivities];
     [self presentViewController:activityViewController animated:YES completion:nil];
     
 }
@@ -160,21 +156,36 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     
 }
 
+#pragma UIGestureRecognizerDelegate
 
-#pragma mark - UIActivityItemSource Protocol
-
-- (nullable id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(UIActivityType)activityType{
-    NSLog(@"activityType1: %@", activityType);
-    return _webView.request.URL;
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
 }
-
-- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController {
-    return _webView.request.URL;
-}
-
-- (NSString *)activityViewController:(UIActivityViewController *)activityViewController dataTypeIdentifierForActivityType:(NSString *)activityType {
-    NSLog(@"activityType3: %@", activityType);
-    return @"org.appextension.fill-browser-action";
+- (IBAction)panRecognizer:(UIPanGestureRecognizer *)sender {
+    CGPoint velocity = [sender velocityInView:_webView];
+    if (velocity.y >0)   // panning down
+    {
+        if (_bottomViewBottomConstraint.constant > 0){
+            [[self view] layoutIfNeeded];
+            _bottomViewBottomConstraint.constant = 0;
+            _topViewTopConstraint.constant = [UIApplication sharedApplication].statusBarFrame.size.height;
+            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+                [[self view] layoutIfNeeded];
+            } completion:nil];
+        }
+        
+    }
+    else                // panning up
+    {
+        if (_bottomViewBottomConstraint.constant < _bottomView.frame.size.height){
+            [[self view] layoutIfNeeded];
+            _bottomViewBottomConstraint.constant = _bottomView.frame.size.height;
+            _topViewTopConstraint.constant = [UIApplication sharedApplication].statusBarFrame.size.height - _topView.frame.size.height;
+            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+                [[self view] layoutIfNeeded];
+            } completion:nil];
+        }
+    }
 }
 
 @end

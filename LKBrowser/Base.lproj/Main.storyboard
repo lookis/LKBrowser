@@ -58,32 +58,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sFV-3b-Jm3">
-                                <rect key="frame" x="8" y="20" width="230" height="30"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkU-Zm-n5q" userLabel="Top View">
+                                <rect key="frame" x="0.0" y="20" width="320" height="38"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sFV-3b-Jm3">
+                                        <rect key="frame" x="8" y="0.0" width="246" height="30"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Hhq-kS-4Gp"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <action selector="endEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="uQC-Ra-djK"/>
+                                            <action selector="gotoUrl:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="EUS-3o-j7I"/>
+                                            <action selector="startEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="fYA-iC-n2O"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7g6-h2-9Dt">
+                                        <rect key="frame" x="254" y="0.0" width="66" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="66" id="bgh-m7-XE9"/>
+                                            <constraint firstAttribute="height" constant="30" id="uQV-1N-pfk"/>
+                                        </constraints>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dKX-bN-uie"/>
+                                        </connections>
+                                    </button>
+                                    <progressView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="41H-7T-zhi">
+                                        <rect key="frame" x="0.0" y="36.5" width="320" height="2.5"/>
+                                    </progressView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Hhq-kS-4Gp"/>
+                                    <constraint firstItem="7g6-h2-9Dt" firstAttribute="trailing" secondItem="VkU-Zm-n5q" secondAttribute="trailing" id="40K-CM-bfh"/>
+                                    <constraint firstItem="sFV-3b-Jm3" firstAttribute="leading" secondItem="VkU-Zm-n5q" secondAttribute="leading" constant="8" id="Ell-i4-vQD"/>
+                                    <constraint firstItem="7g6-h2-9Dt" firstAttribute="centerY" secondItem="sFV-3b-Jm3" secondAttribute="centerY" id="Hdo-8a-O8Y"/>
+                                    <constraint firstItem="7g6-h2-9Dt" firstAttribute="top" secondItem="VkU-Zm-n5q" secondAttribute="top" id="HmD-yL-Qjy"/>
+                                    <constraint firstItem="sFV-3b-Jm3" firstAttribute="trailing" secondItem="7g6-h2-9Dt" secondAttribute="leading" id="K9A-3b-zET"/>
+                                    <constraint firstAttribute="height" constant="38" id="Ljx-G0-z7b"/>
+                                    <constraint firstItem="sFV-3b-Jm3" firstAttribute="top" secondItem="VkU-Zm-n5q" secondAttribute="top" id="QQl-ga-yPQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="41H-7T-zhi" secondAttribute="bottom" id="Wix-8n-ZBC"/>
+                                    <constraint firstItem="41H-7T-zhi" firstAttribute="trailing" secondItem="VkU-Zm-n5q" secondAttribute="trailing" id="b7S-63-Ona"/>
+                                    <constraint firstItem="41H-7T-zhi" firstAttribute="leading" secondItem="VkU-Zm-n5q" secondAttribute="leading" id="uXe-7e-Itd"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
-                                <connections>
-                                    <action selector="endEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="uQC-Ra-djK"/>
-                                    <action selector="gotoUrl:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="EUS-3o-j7I"/>
-                                    <action selector="startEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="fYA-iC-n2O"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7g6-h2-9Dt">
-                                <rect key="frame" x="246" y="20" width="66" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="66" id="bgh-m7-XE9"/>
-                                    <constraint firstAttribute="height" constant="30" id="uQV-1N-pfk"/>
-                                </constraints>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="cancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dKX-bN-uie"/>
-                                </connections>
-                            </button>
+                            </view>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njl-oV-wWC">
                                 <rect key="frame" x="0.0" y="58" width="320" height="466"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -92,64 +113,82 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Cce-6H-zEB"/>
                                 </connections>
                             </webView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYP-fO-gKO">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcB-nl-7p2">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYP-fO-gKO">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="7j2-gE-kpx"/>
+                                        </constraints>
+                                        <items>
+                                            <barButtonItem image="backward" style="plain" id="oR8-Rz-NBb">
+                                                <connections>
+                                                    <action selector="goBack:" destination="BYZ-38-t0r" id="g6V-EJ-JlB"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="9Ym-wz-rfT"/>
+                                            <barButtonItem image="forward" style="plain" id="BTI-f2-Ede">
+                                                <connections>
+                                                    <action selector="goForward:" destination="BYZ-38-t0r" id="Xwp-Ph-5b9"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="Gw6-FI-dqs"/>
+                                            <barButtonItem style="plain" systemItem="refresh" id="T4u-ZG-LsH">
+                                                <connections>
+                                                    <action selector="reload:" destination="BYZ-38-t0r" id="dFD-uk-33m"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="YvT-Kh-Irn"/>
+                                            <barButtonItem style="plain" systemItem="action" id="sFc-1s-Swn">
+                                                <connections>
+                                                    <action selector="share:" destination="BYZ-38-t0r" id="4NM-mr-WQ6"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="h0p-UU-9lP"/>
+                                            <barButtonItem image="tabs" style="plain" id="YZj-JE-rbE">
+                                                <connections>
+                                                    <action selector="tabs:" destination="BYZ-38-t0r" id="7ZZ-T6-NzY"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="7j2-gE-kpx"/>
+                                    <constraint firstAttribute="bottom" secondItem="hYP-fO-gKO" secondAttribute="bottom" id="53n-1d-ORA"/>
+                                    <constraint firstItem="hYP-fO-gKO" firstAttribute="leading" secondItem="AcB-nl-7p2" secondAttribute="leading" id="LMI-dk-eD6"/>
+                                    <constraint firstItem="hYP-fO-gKO" firstAttribute="top" secondItem="AcB-nl-7p2" secondAttribute="top" id="azZ-g8-VVi"/>
+                                    <constraint firstAttribute="trailing" secondItem="hYP-fO-gKO" secondAttribute="trailing" id="qId-nZ-xNv"/>
+                                    <constraint firstAttribute="height" constant="44" id="tFf-wL-AIQ"/>
                                 </constraints>
-                                <items>
-                                    <barButtonItem image="backward" style="plain" id="oR8-Rz-NBb">
-                                        <connections>
-                                            <action selector="goBack:" destination="BYZ-38-t0r" id="g6V-EJ-JlB"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9Ym-wz-rfT"/>
-                                    <barButtonItem image="forward" style="plain" id="BTI-f2-Ede">
-                                        <connections>
-                                            <action selector="goForward:" destination="BYZ-38-t0r" id="Xwp-Ph-5b9"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Gw6-FI-dqs"/>
-                                    <barButtonItem style="plain" systemItem="refresh" id="T4u-ZG-LsH">
-                                        <connections>
-                                            <action selector="reload:" destination="BYZ-38-t0r" id="dFD-uk-33m"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="YvT-Kh-Irn"/>
-                                    <barButtonItem style="plain" systemItem="action" id="sFc-1s-Swn">
-                                        <connections>
-                                            <action selector="share:" destination="BYZ-38-t0r" id="4NM-mr-WQ6"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="h0p-UU-9lP"/>
-                                    <barButtonItem image="tabs" style="plain" id="YZj-JE-rbE">
-                                        <connections>
-                                            <action selector="tabs:" destination="BYZ-38-t0r" id="7ZZ-T6-NzY"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <progressView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="41H-7T-zhi">
-                                <rect key="frame" x="0.0" y="58" width="320" height="2.5"/>
-                            </progressView>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WuS-BF-wLi" userLabel="Status Bar Background">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Niu-Lh-fuX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="41H-7T-zhi" firstAttribute="top" secondItem="sFV-3b-Jm3" secondAttribute="bottom" constant="8" id="1Zm-Co-eaM"/>
-                            <constraint firstItem="hYP-fO-gKO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2pL-Fr-9CB"/>
-                            <constraint firstItem="41H-7T-zhi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6De-NG-ibQ"/>
-                            <constraint firstItem="njl-oV-wWC" firstAttribute="bottom" secondItem="hYP-fO-gKO" secondAttribute="top" id="DKc-Ci-BD5"/>
-                            <constraint firstItem="sFV-3b-Jm3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EZF-Kb-Xy6"/>
-                            <constraint firstAttribute="trailing" secondItem="41H-7T-zhi" secondAttribute="trailing" id="Gda-MO-xYH"/>
-                            <constraint firstAttribute="trailing" secondItem="hYP-fO-gKO" secondAttribute="trailing" id="IGz-es-icf"/>
-                            <constraint firstItem="njl-oV-wWC" firstAttribute="top" secondItem="sFV-3b-Jm3" secondAttribute="bottom" constant="8" symbolic="YES" id="KPf-5L-r8P"/>
-                            <constraint firstAttribute="trailing" secondItem="njl-oV-wWC" secondAttribute="trailing" id="UYY-rl-lOw"/>
+                            <constraint firstItem="AcB-nl-7p2" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="04R-zj-1bs"/>
+                            <constraint firstItem="WuS-BF-wLi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5i7-0U-eEV"/>
+                            <constraint firstItem="VkU-Zm-n5q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Cad-qd-ZYf"/>
+                            <constraint firstItem="WuS-BF-wLi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="K8z-CA-0vM"/>
+                            <constraint firstItem="WuS-BF-wLi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Q59-tf-11v"/>
+                            <constraint firstAttribute="trailing" secondItem="VkU-Zm-n5q" secondAttribute="trailing" id="ROy-YM-0Gl"/>
+                            <constraint firstItem="WuS-BF-wLi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Rir-E6-KZN"/>
+                            <constraint firstItem="njl-oV-wWC" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="UYY-rl-lOw"/>
                             <constraint firstItem="njl-oV-wWC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Vd8-j2-byh"/>
-                            <constraint firstAttribute="trailing" secondItem="7g6-h2-9Dt" secondAttribute="trailing" constant="8" id="bfA-vE-AZJ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hYP-fO-gKO" secondAttribute="bottom" id="kX4-Aj-W2e"/>
-                            <constraint firstItem="7g6-h2-9Dt" firstAttribute="leading" secondItem="sFV-3b-Jm3" secondAttribute="trailing" constant="8" id="ksE-SA-4EC"/>
-                            <constraint firstItem="sFV-3b-Jm3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="z7j-fk-7xz"/>
-                            <constraint firstItem="7g6-h2-9Dt" firstAttribute="centerY" secondItem="sFV-3b-Jm3" secondAttribute="centerY" id="zGR-1B-tQb"/>
+                            <constraint firstItem="njl-oV-wWC" firstAttribute="bottom" secondItem="AcB-nl-7p2" secondAttribute="top" id="cvn-As-DC1"/>
+                            <constraint firstAttribute="trailing" secondItem="WuS-BF-wLi" secondAttribute="trailing" id="g6E-r6-xeC"/>
+                            <constraint firstItem="AcB-nl-7p2" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="qfo-Xc-7cG"/>
+                            <constraint firstItem="AcB-nl-7p2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sa0-2G-uKP"/>
+                            <constraint firstItem="njl-oV-wWC" firstAttribute="top" secondItem="VkU-Zm-n5q" secondAttribute="bottom" id="tYo-Bm-BO6"/>
+                            <constraint firstItem="VkU-Zm-n5q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="xaG-wN-5lf"/>
+                            <constraint firstAttribute="trailing" secondItem="WuS-BF-wLi" secondAttribute="trailing" id="zwy-C1-g9A"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="90q-yj-fVB" appends="YES" id="cvT-Dp-S9r"/>
@@ -157,15 +196,20 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="AcB-nl-7p2" id="UDq-TT-a4k"/>
+                        <outlet property="bottomViewBottomConstraint" destination="04R-zj-1bs" id="cuO-in-6z3"/>
                         <outlet property="buttonGoBack" destination="oR8-Rz-NBb" id="086-52-Tvq"/>
                         <outlet property="buttonGoForward" destination="BTI-f2-Ede" id="yRW-Uc-KhF"/>
                         <outlet property="buttonReload" destination="T4u-ZG-LsH" id="pf7-hl-uZk"/>
                         <outlet property="buttonShare" destination="sFc-1s-Swn" id="XIg-ds-aSV"/>
                         <outlet property="buttonTabs" destination="YZj-JE-rbE" id="oeO-y9-7nC"/>
                         <outlet property="cancel" destination="7g6-h2-9Dt" id="QVY-By-q6T"/>
+                        <outlet property="panRecognizer" destination="m0n-bQ-KrH" id="bSf-qk-uO4"/>
                         <outlet property="progressBar" destination="41H-7T-zhi" id="nKg-ce-irk"/>
                         <outlet property="textAddress" destination="sFV-3b-Jm3" id="LlL-Df-jPr"/>
                         <outlet property="toolbar" destination="hYP-fO-gKO" id="tZm-Fe-oYG"/>
+                        <outlet property="topView" destination="VkU-Zm-n5q" id="0Gz-mW-y8w"/>
+                        <outlet property="topViewTopConstraint" destination="xaG-wN-5lf" id="Y0B-de-8oW"/>
                         <outlet property="webView" destination="njl-oV-wWC" id="8wY-JF-q1W"/>
                     </connections>
                 </viewController>
@@ -182,8 +226,13 @@
                         <action selector="goForward:" destination="BYZ-38-t0r" id="lz6-xU-JeS"/>
                     </connections>
                 </screenEdgePanGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="m0n-bQ-KrH">
+                    <connections>
+                        <action selector="panRecognizer:" destination="BYZ-38-t0r" id="AOR-lN-Zr9"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="378.39999999999998" y="116.49175412293854"/>
+            <point key="canvasLocation" x="380.625" y="101.40845070422536"/>
         </scene>
     </scenes>
     <resources>
