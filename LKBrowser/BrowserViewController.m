@@ -168,7 +168,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
         if (_bottomViewBottomConstraint.constant > 0){
             [[self view] layoutIfNeeded];
             _bottomViewBottomConstraint.constant = 0;
-            _topViewTopConstraint.constant = [UIApplication sharedApplication].statusBarFrame.size.height;
+            _topViewTopConstraint.constant = 0;
             [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
                 [[self view] layoutIfNeeded];
             } completion:nil];
@@ -180,7 +180,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
         if (_bottomViewBottomConstraint.constant < _bottomView.frame.size.height){
             [[self view] layoutIfNeeded];
             _bottomViewBottomConstraint.constant = _bottomView.frame.size.height;
-            _topViewTopConstraint.constant = [UIApplication sharedApplication].statusBarFrame.size.height - _topView.frame.size.height;
+            _topViewTopConstraint.constant = - _topView.frame.size.height;
             [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
                 [[self view] layoutIfNeeded];
             } completion:nil];
