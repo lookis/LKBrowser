@@ -39,7 +39,6 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
     NSMutableURLRequest *newRequest = [self.request mutableCopy];
     [NSURLProtocol setProperty:@YES forKey:URLProtocolProcessedKey inRequest:newRequest];
     
-    
     NSDictionary *dict = @{
                            @"SOCKSEnable" : [NSNumber numberWithInt:1],
                            (NSString *)kCFStreamPropertySOCKSProxyHost : @"127.0.0.1",

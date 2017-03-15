@@ -1,14 +1,15 @@
 //
-//  UITabViewController.m
+//  TabViewController.m
 //  LKBrowser
 //
-//  Created by Lookis on 13/03/2017.
+//  Created by Lookis on 15/03/2017.
 //  Copyright © 2017 Lookis. All rights reserved.
 //
 
 #import "TabViewController.h"
+#import "LKTabCell.h"
 
-@interface TabViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface TabViewController ()
 
 @end
 
@@ -23,7 +24,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[LKTabCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
 }
@@ -46,21 +47,30 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 0;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    LKTabCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    cell.layer.borderWidth = 1.0f;
+    cell.layer.borderColor = [UIColor grayColor].CGColor;
+    cell.layer.cornerRadius = 5;
     
+    cell.layer.shadowColor = [UIColor blackColor].CGColor;
+    cell.layer.shadowOffset = CGSizeMake(3, 3);
+    cell.layer.shadowOpacity = 0.7;
+    cell.layer.shadowRadius = 4.0;
     // Configure the cell
-    
+    if ([indexPath section] == 0 && [indexPath row] == 0){
+        [[cell button] setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+    }else{
+        
+    }
     return cell;
 }
 

@@ -15,6 +15,8 @@
 		53077EE41E779FA3009F8E43 /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EDD1E779FA3009F8E43 /* libsodium.a */; };
 		53077EE51E779FA3009F8E43 /* libudns.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EDE1E779FA3009F8E43 /* libudns.a */; };
 		53077EE71E779FC2009F8E43 /* shadowsocks.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EE61E779FB5009F8E43 /* shadowsocks.h */; };
+		537A3B1E1E79882200BA76F1 /* LKTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 537A3B1D1E79882200BA76F1 /* LKTabCell.m */; };
+		537A3B211E798B3F00BA76F1 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 537A3B201E798B3F00BA76F1 /* TabViewController.m */; };
 		537C0E571E710D1500BE58D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E561E710D1500BE58D7 /* main.m */; };
 		537C0E5A1E710D1500BE58D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E591E710D1500BE58D7 /* AppDelegate.m */; };
 		537C0E5D1E710D1500BE58D7 /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E5C1E710D1500BE58D7 /* BrowserViewController.m */; };
@@ -23,7 +25,6 @@
 		537C0E651E710D1500BE58D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537C0E631E710D1500BE58D7 /* LaunchScreen.storyboard */; };
 		537C0E7A1E71600E00BE58D7 /* LKHTTPProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E791E71600E00BE58D7 /* LKHTTPProtocol.m */; };
 		53A912611E72919300F0ADBD /* MyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A912601E72919300F0ADBD /* MyURLProtocol.m */; };
-		53D8F6591E7665680033209D /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D8F6581E7665680033209D /* TabViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,10 @@
 		53077EDD1E779FA3009F8E43 /* libsodium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsodium.a; sourceTree = "<group>"; };
 		53077EDE1E779FA3009F8E43 /* libudns.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libudns.a; sourceTree = "<group>"; };
 		53077EE61E779FB5009F8E43 /* shadowsocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shadowsocks.h; sourceTree = "<group>"; };
+		537A3B1C1E79882200BA76F1 /* LKTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKTabCell.h; path = Tab/LKTabCell.h; sourceTree = "<group>"; };
+		537A3B1D1E79882200BA76F1 /* LKTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKTabCell.m; path = Tab/LKTabCell.m; sourceTree = "<group>"; };
+		537A3B1F1E798B3F00BA76F1 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabViewController.h; path = Tab/TabViewController.h; sourceTree = "<group>"; };
+		537A3B201E798B3F00BA76F1 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabViewController.m; path = Tab/TabViewController.m; sourceTree = "<group>"; };
 		537C0E521E710D1500BE58D7 /* LKBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LKBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		537C0E561E710D1500BE58D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		537C0E581E710D1500BE58D7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -49,8 +54,6 @@
 		537C0E791E71600E00BE58D7 /* LKHTTPProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKHTTPProtocol.m; path = HTTPProtocol/LKHTTPProtocol.m; sourceTree = "<group>"; };
 		53A9125F1E72919300F0ADBD /* MyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyURLProtocol.h; sourceTree = "<group>"; };
 		53A912601E72919300F0ADBD /* MyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyURLProtocol.m; sourceTree = "<group>"; };
-		53D8F6571E7665680033209D /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
-		53D8F6581E7665680033209D /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +121,6 @@
 				537C0E631E710D1500BE58D7 /* LaunchScreen.storyboard */,
 				537C0E661E710D1500BE58D7 /* Info.plist */,
 				537C0E551E710D1500BE58D7 /* Supporting Files */,
-				53D8F6571E7665680033209D /* TabViewController.h */,
-				53D8F6581E7665680033209D /* TabViewController.m */,
 			);
 			path = LKBrowser;
 			sourceTree = "<group>";
@@ -135,6 +136,10 @@
 		537C0E6D1E7131B500BE58D7 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
+				537A3B1F1E798B3F00BA76F1 /* TabViewController.h */,
+				537A3B201E798B3F00BA76F1 /* TabViewController.m */,
+				537A3B1C1E79882200BA76F1 /* LKTabCell.h */,
+				537A3B1D1E79882200BA76F1 /* LKTabCell.m */,
 			);
 			name = Tab;
 			sourceTree = "<group>";
@@ -223,10 +228,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				537C0E5D1E710D1500BE58D7 /* BrowserViewController.m in Sources */,
-				53D8F6591E7665680033209D /* TabViewController.m in Sources */,
+				537A3B1E1E79882200BA76F1 /* LKTabCell.m in Sources */,
 				537C0E5A1E710D1500BE58D7 /* AppDelegate.m in Sources */,
 				537C0E571E710D1500BE58D7 /* main.m in Sources */,
 				537C0E7A1E71600E00BE58D7 /* LKHTTPProtocol.m in Sources */,
+				537A3B211E798B3F00BA76F1 /* TabViewController.m in Sources */,
 				53A912611E72919300F0ADBD /* MyURLProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
