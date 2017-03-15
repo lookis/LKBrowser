@@ -163,7 +163,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 }
 - (IBAction)panRecognizer:(UIPanGestureRecognizer *)sender {
     CGPoint velocity = [sender velocityInView:_webView];
-    if (velocity.y >0)   // panning down
+    if (velocity.y > 100)   // panning down
     {
         if (_bottomViewBottomConstraint.constant > 0){
             [[self view] layoutIfNeeded];
@@ -175,7 +175,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
         }
         
     }
-    else                // panning up
+    else if(velocity.y < -100)               // panning up
     {
         if (_bottomViewBottomConstraint.constant < _bottomView.frame.size.height){
             [[self view] layoutIfNeeded];
