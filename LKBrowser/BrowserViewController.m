@@ -52,8 +52,6 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
 
 - (void)renderButtons{
-    //    [_buttonGoBack setEnabled:NO];
-    //    [_buttonGoForward setEnabled:NO];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 50 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
         [_buttonGoBack setEnabled:[_webView canGoBack]];
         [_buttonGoForward setEnabled:[_webView canGoForward]];
@@ -93,6 +91,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 #pragma UIWebViewDelegate
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     if(![_textAddress isFirstResponder]){
         [_textAddress setText: [request.URL absoluteString]];
     }
@@ -109,11 +108,8 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     return YES;
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView{
-    
-}
-
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     NSLog(@"webViewDidFinishLoad");
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{

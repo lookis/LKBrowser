@@ -9,6 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface LKTabCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIButton *button;
-
 @end

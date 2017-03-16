@@ -7,7 +7,11 @@
 //
 
 #import "LKTabCell.h"
+@interface LKTabCell ()
+@end
+
 
 @implementation LKTabCell
+
 
 @end
