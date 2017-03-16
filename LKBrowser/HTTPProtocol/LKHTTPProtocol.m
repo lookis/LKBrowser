@@ -7,20 +7,21 @@
 //
 
 #import "LKHTTPProtocol.h"
+#import "BrowserViewController.h"
+#import "AppDelegate.h"
 
 static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
 
-@interface LKHTTPProtocol () <NSURLSessionDataDelegate>
-@property (nonatomic, strong) NSURLSessionTask *sessionTask;
-@property (nonatomic, strong) NSURLSession *session;
+@interface LKHTTPProtocol ()
+@property (nonatomic, strong) NSURLSessionTask* task;
 @end
 
 @implementation LKHTTPProtocol
 
-#pragma NSURLProtocol
+#pragma mark NSURLProtocol
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    if ([NSURLProtocol propertyForKey:URLProtocolProcessedKey inRequest:request]) {
+    if (![NSURLProtocol propertyForKey:BrowserRedirectedRequest inRequest:request] && [NSURLProtocol propertyForKey:URLProtocolProcessedKey inRequest:request]) {
         return NO;
     }
     return YES;
@@ -38,54 +39,23 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
     NSLog(@"startLoading %@", self);
     NSMutableURLRequest *newRequest = [self.request mutableCopy];
     [NSURLProtocol setProperty:@YES forKey:URLProtocolProcessedKey inRequest:newRequest];
-    
-    NSDictionary *dict = @{
-                           @"SOCKSEnable" : [NSNumber numberWithInt:1],
-                           (NSString *)kCFStreamPropertySOCKSProxyHost : @"127.0.0.1",
-                           (NSString *)kCFStreamPropertySOCKSProxyPort : @1081,
-                           };
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [configuration setConnectionProxyDictionary:dict];
-    _session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-    self.sessionTask = [_session dataTaskWithRequest:newRequest];
-    [self.sessionTask resume];
+    NSURLSession *session = [[self getController] getSession];
+    self.task = [session dataTaskWithRequest:newRequest];
+    [[self getController] registerSessionTask:self.task withProtocol:self];
+    [self.task resume];
 }
 
 - (void)stopLoading {
-    [self.sessionTask cancel];
-    self.sessionTask = nil;
-    [_session finishTasksAndInvalidate];
-    _session = nil;
+    [self.task cancel];
+    [[self getController] protocolStopLoading:self];
+    self.task = nil;
 }
 
-#pragma NSURLSessionDataDelegate
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)newRequest completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler{
-    NSMutableURLRequest *redirectRequest = [newRequest mutableCopy];
-    [[self class] removePropertyForKey:URLProtocolProcessedKey inRequest:redirectRequest];
-    [[self client] URLProtocol:self wasRedirectedToRequest:redirectRequest redirectResponse:response];
-    [self.sessionTask cancel];
-    [[self client] URLProtocol:self didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
-}
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler{
-    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-    completionHandler(NSURLSessionResponseAllow);
-}
-
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data{
-    [self.client URLProtocol:self didLoadData:data];
-}
-
-- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error{
-    [self.client URLProtocol:self didFailWithError:error];
-}
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error{
-    if (error && error.code != NSURLErrorCancelled) {
-        [self.client URLProtocol:self didFailWithError:error];
-    } else {
-        [self.client URLProtocolDidFinishLoading:self];
-    }
+- (BrowserViewController *) getController{
+    BrowserViewController *rootController =(BrowserViewController*)[[(AppDelegate*)
+                                                               [[UIApplication sharedApplication]delegate] window] rootViewController];
+    return rootController;
 }
 
 @end

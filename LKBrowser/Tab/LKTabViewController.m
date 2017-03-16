@@ -11,7 +11,6 @@
 #import "BrowserViewController.h"
 
 @interface LKTabViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
-@property (nonatomic, strong) NSMutableArray<NSURLSession *> *sessionArray;
 @property (nonatomic, strong) NSMutableArray<BrowserViewController *> *browserArray;
 @property (nonatomic) NSInteger currentTab;
 @end
@@ -23,20 +22,15 @@ static NSString * const reuseIdentifier = @"LKCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    // create first tab;
-    BrowserViewController *browserController = [[BrowserViewController alloc] init];
-    [_browserArray addObject:browserController];
-    NSDictionary *dict = @{
-                           @"SOCKSEnable" : [NSNumber numberWithInt:1],
-                           (NSString *)kCFStreamPropertySOCKSProxyHost : @"127.0.0.1",
-                           (NSString *)kCFStreamPropertySOCKSProxyPort : @1081,
-                           };
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [configuration setConnectionProxyDictionary:dict];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+//    if(!_browserArray){
+//        _browserArray = [[NSMutableArray alloc] init];
+//    }
     
-    [_sessionArray addObject:session];
-    [[self view] addSubview:browserController.view];
+    // create first tab;
+//    BrowserViewController *browserController = [[BrowserViewController alloc] init];
+//    [_browserArray addObject:browserController];
+//    [[self view] addSubview:browserController.view];
+//    _currentTab = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,7 +52,7 @@ static NSString * const reuseIdentifier = @"LKCell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [_sessionArray count];;
+    return [_browserArray count];;
 }
 
 - (LKTabCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

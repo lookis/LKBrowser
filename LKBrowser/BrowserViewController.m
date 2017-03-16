@@ -13,7 +13,7 @@ static float const PROGRESS_VIEW_INTERVAL = (float)1.0/60;
 static float const PROGRESS_VIEW_MAX_BEFORE_LOADED = (float)0.95;
 static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
-@interface BrowserViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate>
+@interface BrowserViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate, NSURLSessionDataDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textAddress;
 @property (weak, nonatomic) IBOutlet UIButton *cancel;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -30,6 +30,9 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewTopConstraint;
 
+@property (nonatomic, strong) NSMutableDictionary<NSURLSessionTask *, NSURLProtocol *> *sessionDictionary;
+@property (nonatomic, strong) NSURLSession *session;
+
 @end
 
 @implementation BrowserViewController
@@ -37,17 +40,22 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    //
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]];
     [_panRecognizer setDelegate:self];
     [[_webView scrollView] addGestureRecognizer:_panRecognizer];
     [_webView loadRequest:request];
     [self renderButtons];
+    
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    [_session invalidateAndCancel];
+    _session = nil;
+    _sessionDictionary = nil;
 }
 
 
@@ -58,8 +66,32 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     });
 }
 
+- (void) registerSessionTask:(NSURLSessionTask *)task withProtocol:(LKHTTPProtocol *)protocol{
+    if (!_sessionDictionary){
+        _sessionDictionary = [[NSMutableDictionary alloc] init];
+    }
+    [_sessionDictionary setObject:protocol forKey:task];
+}
 
-#pragma AddressBar
+- (void) protocolStopLoading:(LKHTTPProtocol *)protocol{
+    [_sessionDictionary removeObjectForKey:protocol.task];
+}
+
+- (NSURLSession *) getSession {
+    if(!_session){
+        NSDictionary *dict = @{
+                               @"SOCKSEnable" : [NSNumber numberWithInt:1],
+                               (NSString *)kCFStreamPropertySOCKSProxyHost : @"127.0.0.1",
+                               (NSString *)kCFStreamPropertySOCKSProxyPort : @1081,
+                               };
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        [configuration setConnectionProxyDictionary:dict];
+        _session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+    }
+    return _session;
+}
+
+#pragma mark AddressBar
 
 - (IBAction)cancel:(id)sender{
     [_textAddress resignFirstResponder];
@@ -88,7 +120,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     [_textAddress setText: [[[_webView request]URL] absoluteString]];
 }
 
-#pragma UIWebViewDelegate
+#pragma mark UIWebViewDelegate
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -120,7 +152,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     [CATransaction commit];
 }
 
-#pragma UITab
+#pragma mark UITab
 
 - (IBAction)goBack:(id)sender{
     if ([_webView canGoBack]){
@@ -155,7 +187,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     
 }
 
-#pragma UIGestureRecognizerDelegate
+#pragma mark UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
     return YES;
@@ -186,5 +218,45 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
         }
     }
 }
+
+
+#pragma mark NSURLSessionDataDelegate
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)newRequest completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler{
+    NSMutableURLRequest *redirectRequest = [newRequest mutableCopy];
+    [NSURLProtocol setProperty:@YES forKey:BrowserRedirectedRequest inRequest:redirectRequest];
+    NSURLProtocol *protocol = [_sessionDictionary objectForKey:task];
+    [protocol.client URLProtocol:protocol wasRedirectedToRequest:redirectRequest redirectResponse:response];
+    [task cancel];
+    [protocol.client URLProtocol:protocol didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler{
+    NSURLProtocol *protocol = [_sessionDictionary objectForKey:dataTask];
+    [protocol.client URLProtocol:protocol didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+    completionHandler(NSURLSessionResponseAllow);
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data{
+    NSURLProtocol *protocol = [_sessionDictionary objectForKey:dataTask];
+    [protocol.client URLProtocol:protocol didLoadData:data];
+}
+
+- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error{
+    if(_session){
+        [_session invalidateAndCancel];
+        _session = nil;
+    }
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error{
+    NSURLProtocol *protocol = [_sessionDictionary objectForKey:task];
+    if (error && error.code != NSURLErrorCancelled) {
+        [protocol.client URLProtocol:protocol didFailWithError:error];
+    } else {
+        [protocol.client URLProtocolDidFinishLoading:protocol];
+    }
+}
+
 
 @end
