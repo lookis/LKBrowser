@@ -41,12 +41,11 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.ip138.com"]];
     [_panRecognizer setDelegate:self];
     [[_webView scrollView] addGestureRecognizer:_panRecognizer];
     [_webView loadRequest:request];
     [self renderButtons];
-    
 }
 
 
@@ -123,6 +122,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 #pragma mark UIWebViewDelegate
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    NSLog(@"webView shouldStartLoadWithRequest %@", request.URL.absoluteString);
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     if(![_textAddress isFirstResponder]){
         [_textAddress setText: [request.URL absoluteString]];

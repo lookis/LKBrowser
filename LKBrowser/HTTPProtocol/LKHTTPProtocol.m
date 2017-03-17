@@ -24,6 +24,7 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
     if (![NSURLProtocol propertyForKey:BrowserRedirectedRequest inRequest:request] && [NSURLProtocol propertyForKey:URLProtocolProcessedKey inRequest:request]) {
         return NO;
     }
+    NSLog(@"canInitWithRequest: %@", request.URL.absoluteString);
     return YES;
 }
 
@@ -36,7 +37,7 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
 }
 
 - (void)startLoading {
-    NSLog(@"startLoading %@", self);
+    NSLog(@"startLoading request: %@, task: %@", self.request, self.task);
     NSMutableURLRequest *newRequest = [self.request mutableCopy];
     [NSURLProtocol setProperty:@YES forKey:URLProtocolProcessedKey inRequest:newRequest];
     NSURLSession *session = [[self getController] getSession];
