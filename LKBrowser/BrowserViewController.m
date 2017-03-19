@@ -7,6 +7,7 @@
 //
 
 #import "BrowserViewController.h"
+#import "LKHTTPProtocol.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 static float const PROGRESS_VIEW_INTERVAL = (float)1.0/60;
@@ -30,9 +31,6 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewTopConstraint;
 
-@property (nonatomic, strong) NSMutableDictionary<NSURLSessionTask *, NSURLProtocol *> *sessionDictionary;
-@property (nonatomic, strong) NSURLSession *session;
-
 @end
 
 @implementation BrowserViewController
@@ -52,9 +50,6 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    [_session invalidateAndCancel];
-    _session = nil;
-    _sessionDictionary = nil;
 }
 
 
@@ -64,32 +59,6 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
         [_buttonGoForward setEnabled:[_webView canGoForward]];
     });
 }
-
-- (void) registerSessionTask:(NSURLSessionTask *)task withProtocol:(LKHTTPProtocol *)protocol{
-    if (!_sessionDictionary){
-        _sessionDictionary = [[NSMutableDictionary alloc] init];
-    }
-    [_sessionDictionary setObject:protocol forKey:task];
-}
-
-- (void) protocolStopLoading:(LKHTTPProtocol *)protocol{
-    [_sessionDictionary removeObjectForKey:protocol.task];
-}
-
-- (NSURLSession *) getSession {
-    if(!_session){
-        NSDictionary *dict = @{
-                               @"SOCKSEnable" : [NSNumber numberWithInt:1],
-                               (NSString *)kCFStreamPropertySOCKSProxyHost : @"127.0.0.1",
-                               (NSString *)kCFStreamPropertySOCKSProxyPort : @1081,
-                               };
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        [configuration setConnectionProxyDictionary:dict];
-        _session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-    }
-    return _session;
-}
-
 #pragma mark AddressBar
 
 - (IBAction)cancel:(id)sender{
@@ -232,45 +201,6 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
                 [[self view] layoutIfNeeded];
             } completion:nil];
         }
-    }
-}
-
-
-#pragma mark NSURLSessionDataDelegate
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)newRequest completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler{
-    NSMutableURLRequest *redirectRequest = [newRequest mutableCopy];
-    [NSURLProtocol setProperty:@YES forKey:BrowserRedirectedRequest inRequest:redirectRequest];
-    NSURLProtocol *protocol = [_sessionDictionary objectForKey:task];
-    [protocol.client URLProtocol:protocol wasRedirectedToRequest:redirectRequest redirectResponse:response];
-    [task cancel];
-    [protocol.client URLProtocol:protocol didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
-}
-
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler{
-    NSURLProtocol *protocol = [_sessionDictionary objectForKey:dataTask];
-    [protocol.client URLProtocol:protocol didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-    completionHandler(NSURLSessionResponseAllow);
-}
-
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data{
-    NSURLProtocol *protocol = [_sessionDictionary objectForKey:dataTask];
-    [protocol.client URLProtocol:protocol didLoadData:data];
-}
-
-- (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error{
-    if(_session){
-        [_session invalidateAndCancel];
-        _session = nil;
-    }
-}
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error{
-    NSURLProtocol *protocol = [_sessionDictionary objectForKey:task];
-    if (error && error.code != NSURLErrorCancelled) {
-        [protocol.client URLProtocol:protocol didFailWithError:error];
-    } else {
-        [protocol.client URLProtocolDidFinishLoading:protocol];
     }
 }
 

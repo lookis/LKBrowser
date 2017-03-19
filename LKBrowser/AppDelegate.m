@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MyURLProtocol.h"
 #import "pthread.h"
 #import "start_local.h"
 

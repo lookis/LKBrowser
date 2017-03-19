@@ -7,8 +7,8 @@
 //
 
 #import "LKHTTPProtocol.h"
-#import "BrowserViewController.h"
 #import "AppDelegate.h"
+#import "LKSessionManager.h"
 
 static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
 
@@ -40,23 +40,17 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
     NSLog(@"startLoading request: %@, task: %@", self.request, self.task);
     NSMutableURLRequest *newRequest = [self.request mutableCopy];
     [NSURLProtocol setProperty:@YES forKey:URLProtocolProcessedKey inRequest:newRequest];
-    NSURLSession *session = [[self getController] getSession];
+    NSURLSession *session = [LKSessionManager sharedSession];
     self.task = [session dataTaskWithRequest:newRequest];
-    [[self getController] registerSessionTask:self.task withProtocol:self];
+    [LKSessionManager registerSessionTask:self.task withProtocol:self];
     [self.task resume];
 }
 
 - (void)stopLoading {
     [self.task cancel];
-    [[self getController] protocolStopLoading:self];
+    [LKSessionManager protocolStopLoading:self];
     self.task = nil;
 }
 
-
-- (BrowserViewController *) getController{
-    BrowserViewController *rootController =(BrowserViewController*)[[(AppDelegate*)
-                                                               [[UIApplication sharedApplication]delegate] window] rootViewController];
-    return rootController;
-}
 
 @end

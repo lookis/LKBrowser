@@ -16,7 +16,6 @@
 		537C0E621E710D1500BE58D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 537C0E611E710D1500BE58D7 /* Assets.xcassets */; };
 		537C0E651E710D1500BE58D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537C0E631E710D1500BE58D7 /* LaunchScreen.storyboard */; };
 		537C0E7A1E71600E00BE58D7 /* LKHTTPProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E791E71600E00BE58D7 /* LKHTTPProtocol.m */; };
-		53A912611E72919300F0ADBD /* MyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A912601E72919300F0ADBD /* MyURLProtocol.m */; };
 		53BE01D21E7C223F005E9E54 /* start_local.c in Sources */ = {isa = PBXBuildFile; fileRef = 53BE01D01E7C223F005E9E54 /* start_local.c */; };
 		53BE01FD1E7CB4CE005E9E54 /* libev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01F61E7CB4CE005E9E54 /* libev.a */; };
 		53BE01FE1E7CB4CE005E9E54 /* libmbedcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01F71E7CB4CE005E9E54 /* libmbedcrypto.a */; };
@@ -25,6 +24,7 @@
 		53BE02011E7CB4CE005E9E54 /* libshadowsocks-libev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01FA1E7CB4CE005E9E54 /* libshadowsocks-libev.a */; };
 		53BE02021E7CB4CE005E9E54 /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01FB1E7CB4CE005E9E54 /* libsodium.a */; };
 		53BE02031E7CB4CE005E9E54 /* libudns.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01FC1E7CB4CE005E9E54 /* libudns.a */; };
+		53BE022B1E7E9D9B005E9E54 /* LKSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BE022A1E7E9D9B005E9E54 /* LKSessionManager.m */; };
 		53F440791E7A5F8B00C4DECC /* LKTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F440781E7A5F8B00C4DECC /* LKTabViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -42,10 +42,8 @@
 		537C0E611E710D1500BE58D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		537C0E641E710D1500BE58D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		537C0E661E710D1500BE58D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		537C0E781E71600E00BE58D7 /* LKHTTPProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKHTTPProtocol.h; path = HTTPProtocol/LKHTTPProtocol.h; sourceTree = "<group>"; };
-		537C0E791E71600E00BE58D7 /* LKHTTPProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKHTTPProtocol.m; path = HTTPProtocol/LKHTTPProtocol.m; sourceTree = "<group>"; };
-		53A9125F1E72919300F0ADBD /* MyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyURLProtocol.h; sourceTree = "<group>"; };
-		53A912601E72919300F0ADBD /* MyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyURLProtocol.m; sourceTree = "<group>"; };
+		537C0E781E71600E00BE58D7 /* LKHTTPProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKHTTPProtocol.h; path = Networking/LKHTTPProtocol.h; sourceTree = "<group>"; };
+		537C0E791E71600E00BE58D7 /* LKHTTPProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKHTTPProtocol.m; path = Networking/LKHTTPProtocol.m; sourceTree = "<group>"; };
 		53BE01D01E7C223F005E9E54 /* start_local.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = start_local.c; sourceTree = "<group>"; };
 		53BE01D11E7C223F005E9E54 /* start_local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = start_local.h; sourceTree = "<group>"; };
 		53BE01F61E7CB4CE005E9E54 /* libev.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libev.a; path = LKBrowser/3rd/libev.a; sourceTree = "<group>"; };
@@ -55,6 +53,8 @@
 		53BE01FA1E7CB4CE005E9E54 /* libshadowsocks-libev.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libshadowsocks-libev.a"; path = "LKBrowser/3rd/libshadowsocks-libev.a"; sourceTree = "<group>"; };
 		53BE01FB1E7CB4CE005E9E54 /* libsodium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsodium.a; path = LKBrowser/3rd/libsodium.a; sourceTree = "<group>"; };
 		53BE01FC1E7CB4CE005E9E54 /* libudns.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libudns.a; path = LKBrowser/3rd/libudns.a; sourceTree = "<group>"; };
+		53BE02291E7E9D9B005E9E54 /* LKSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKSessionManager.h; path = Networking/LKSessionManager.h; sourceTree = "<group>"; };
+		53BE022A1E7E9D9B005E9E54 /* LKSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKSessionManager.m; path = Networking/LKSessionManager.m; sourceTree = "<group>"; };
 		53F440771E7A5F8B00C4DECC /* LKTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKTabViewController.h; path = Tab/LKTabViewController.h; sourceTree = "<group>"; };
 		53F440781E7A5F8B00C4DECC /* LKTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKTabViewController.m; path = Tab/LKTabViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,7 +113,7 @@
 		537C0E541E710D1500BE58D7 /* LKBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				537C0E741E715F9800BE58D7 /* HTTPProtocol */,
+				537C0E741E715F9800BE58D7 /* Networking */,
 				537C0E6D1E7131B500BE58D7 /* Tab */,
 				537C0E581E710D1500BE58D7 /* AppDelegate.h */,
 				537C0E591E710D1500BE58D7 /* AppDelegate.m */,
@@ -149,15 +149,15 @@
 			name = Tab;
 			sourceTree = "<group>";
 		};
-		537C0E741E715F9800BE58D7 /* HTTPProtocol */ = {
+		537C0E741E715F9800BE58D7 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				53A9125F1E72919300F0ADBD /* MyURLProtocol.h */,
-				53A912601E72919300F0ADBD /* MyURLProtocol.m */,
 				537C0E781E71600E00BE58D7 /* LKHTTPProtocol.h */,
 				537C0E791E71600E00BE58D7 /* LKHTTPProtocol.m */,
+				53BE02291E7E9D9B005E9E54 /* LKSessionManager.h */,
+				53BE022A1E7E9D9B005E9E54 /* LKSessionManager.m */,
 			);
-			name = HTTPProtocol;
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,9 +235,9 @@
 				537C0E5D1E710D1500BE58D7 /* BrowserViewController.m in Sources */,
 				537A3B1E1E79882200BA76F1 /* LKTabCell.m in Sources */,
 				537C0E5A1E710D1500BE58D7 /* AppDelegate.m in Sources */,
+				53BE022B1E7E9D9B005E9E54 /* LKSessionManager.m in Sources */,
 				537C0E571E710D1500BE58D7 /* main.m in Sources */,
 				537C0E7A1E71600E00BE58D7 /* LKHTTPProtocol.m in Sources */,
-				53A912611E72919300F0ADBD /* MyURLProtocol.m in Sources */,
 				53BE01D21E7C223F005E9E54 /* start_local.c in Sources */,
 				53F440791E7A5F8B00C4DECC /* LKTabViewController.m in Sources */,
 			);
