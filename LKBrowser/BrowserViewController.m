@@ -103,7 +103,10 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     if([[_textAddress text] hasPrefix:@"http://"] || [[_textAddress text] hasPrefix:@"https://"]){
         url = [NSURL URLWithString:[_textAddress text]];
     }else{
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [_textAddress text]]];
+        long dotPosition = [[_textAddress text] rangeOfString:@"."].location;
+        if(dotPosition != NSNotFound && dotPosition !=0 && dotPosition != [[_textAddress text] length] - 1){
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [_textAddress text]]];
+        };
     }
     if(!url){
         url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/search?q=%@", [[_textAddress text]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]]];
