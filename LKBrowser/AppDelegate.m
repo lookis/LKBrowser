@@ -18,6 +18,7 @@
 @end
 
 pthread_t serverThread;
+profile_t profile;
 
 @implementation AppDelegate
 
@@ -72,20 +73,18 @@ pthread_t serverThread;
         _backgroundIdentifier = UIBackgroundTaskInvalid;
     }
     if(!serverThread){
-        profile_t profile = {
-            .remote_host = "192.241.222.150",
-            .local_addr = "127.0.0.1",
-            .method = "aes-256-cfb",
-            .password = "12345679",
-            .remote_port = 8389,
-            .local_port = 1081,
-            .timeout = 300,
-            .acl = NULL,
-            .log = NULL,
-            .fast_open = 1,
-            .mode = 0,
-            .verbose = 1
-        };
+        profile.remote_host = "192.241.222.150";
+        profile.local_addr = "127.0.0.1";
+        profile.method = "aes-256-cfb";
+        profile.password = "12345679";
+        profile.remote_port = 8389;
+        profile.local_port = 1081;
+        profile.timeout = 300;
+        profile.acl = NULL;
+        profile.log = NULL;
+        profile.fast_open = 1;
+        profile.mode = 0;
+        profile.verbose = 0;
         pthread_create(&(serverThread), nil, start_ss_local, &profile);
         
     }
