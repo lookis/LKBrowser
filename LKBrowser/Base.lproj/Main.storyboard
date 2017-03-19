@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -230,13 +230,13 @@
                 <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="90q-yj-fVB">
                     <rectEdge key="edges" left="YES"/>
                     <connections>
-                        <action selector="goBack:" destination="BYZ-38-t0r" id="TAa-au-MIv"/>
+                        <action selector="panFromLeftEdge:" destination="BYZ-38-t0r" id="6u3-sS-f6R"/>
                     </connections>
                 </screenEdgePanGestureRecognizer>
                 <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="u9C-eB-0RI">
                     <rectEdge key="edges" right="YES"/>
                     <connections>
-                        <action selector="goForward:" destination="BYZ-38-t0r" id="lz6-xU-JeS"/>
+                        <action selector="panFromRightEdge:" destination="BYZ-38-t0r" id="rZN-Ln-Rbw"/>
                     </connections>
                 </screenEdgePanGestureRecognizer>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="m0n-bQ-KrH">

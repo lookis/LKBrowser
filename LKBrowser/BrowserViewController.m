@@ -188,6 +188,16 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 }
 
 #pragma mark UIGestureRecognizerDelegate
+- (IBAction)panFromLeftEdge:(UIScreenEdgePanGestureRecognizer *)sender {
+    if([sender state] == UIGestureRecognizerStateEnded){
+        [self goBack:sender];
+    }
+}
+- (IBAction)panFromRightEdge:(UIScreenEdgePanGestureRecognizer *)sender {
+    if([sender state] == UIGestureRecognizerStateEnded){
+        [self goForward:sender];
+    }
+}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
     return YES;

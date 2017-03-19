@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		53077EDF1E779FA3009F8E43 /* libev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077ED81E779FA3009F8E43 /* libev.a */; };
-		53077EE01E779FA3009F8E43 /* libmbedcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077ED91E779FA3009F8E43 /* libmbedcrypto.a */; };
-		53077EE11E779FA3009F8E43 /* libmbedtls.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EDA1E779FA3009F8E43 /* libmbedtls.a */; };
-		53077EE21E779FA3009F8E43 /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EDB1E779FA3009F8E43 /* libpcre.a */; };
-		53077EE31E779FA3009F8E43 /* libshadowsocks-libev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EDC1E779FA3009F8E43 /* libshadowsocks-libev.a */; };
-		53077EE41E779FA3009F8E43 /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EDD1E779FA3009F8E43 /* libsodium.a */; };
-		53077EE51E779FA3009F8E43 /* libudns.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EDE1E779FA3009F8E43 /* libudns.a */; };
 		53077EE71E779FC2009F8E43 /* shadowsocks.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EE61E779FB5009F8E43 /* shadowsocks.h */; };
 		537A3B1E1E79882200BA76F1 /* LKTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 537A3B1D1E79882200BA76F1 /* LKTabCell.m */; };
 		537C0E571E710D1500BE58D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E561E710D1500BE58D7 /* main.m */; };
@@ -24,17 +17,18 @@
 		537C0E651E710D1500BE58D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537C0E631E710D1500BE58D7 /* LaunchScreen.storyboard */; };
 		537C0E7A1E71600E00BE58D7 /* LKHTTPProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E791E71600E00BE58D7 /* LKHTTPProtocol.m */; };
 		53A912611E72919300F0ADBD /* MyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A912601E72919300F0ADBD /* MyURLProtocol.m */; };
+		53BE01D21E7C223F005E9E54 /* start_local.c in Sources */ = {isa = PBXBuildFile; fileRef = 53BE01D01E7C223F005E9E54 /* start_local.c */; };
+		53BE01FD1E7CB4CE005E9E54 /* libev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01F61E7CB4CE005E9E54 /* libev.a */; };
+		53BE01FE1E7CB4CE005E9E54 /* libmbedcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01F71E7CB4CE005E9E54 /* libmbedcrypto.a */; };
+		53BE01FF1E7CB4CE005E9E54 /* libmbedtls.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01F81E7CB4CE005E9E54 /* libmbedtls.a */; };
+		53BE02001E7CB4CE005E9E54 /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01F91E7CB4CE005E9E54 /* libpcre.a */; };
+		53BE02011E7CB4CE005E9E54 /* libshadowsocks-libev.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01FA1E7CB4CE005E9E54 /* libshadowsocks-libev.a */; };
+		53BE02021E7CB4CE005E9E54 /* libsodium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01FB1E7CB4CE005E9E54 /* libsodium.a */; };
+		53BE02031E7CB4CE005E9E54 /* libudns.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE01FC1E7CB4CE005E9E54 /* libudns.a */; };
 		53F440791E7A5F8B00C4DECC /* LKTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F440781E7A5F8B00C4DECC /* LKTabViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		53077ED81E779FA3009F8E43 /* libev.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libev.a; sourceTree = "<group>"; };
-		53077ED91E779FA3009F8E43 /* libmbedcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmbedcrypto.a; sourceTree = "<group>"; };
-		53077EDA1E779FA3009F8E43 /* libmbedtls.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmbedtls.a; sourceTree = "<group>"; };
-		53077EDB1E779FA3009F8E43 /* libpcre.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpcre.a; sourceTree = "<group>"; };
-		53077EDC1E779FA3009F8E43 /* libshadowsocks-libev.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libshadowsocks-libev.a"; sourceTree = "<group>"; };
-		53077EDD1E779FA3009F8E43 /* libsodium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsodium.a; sourceTree = "<group>"; };
-		53077EDE1E779FA3009F8E43 /* libudns.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libudns.a; sourceTree = "<group>"; };
 		53077EE61E779FB5009F8E43 /* shadowsocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shadowsocks.h; sourceTree = "<group>"; };
 		537A3B1C1E79882200BA76F1 /* LKTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKTabCell.h; path = Tab/LKTabCell.h; sourceTree = "<group>"; };
 		537A3B1D1E79882200BA76F1 /* LKTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKTabCell.m; path = Tab/LKTabCell.m; sourceTree = "<group>"; };
@@ -52,6 +46,15 @@
 		537C0E791E71600E00BE58D7 /* LKHTTPProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKHTTPProtocol.m; path = HTTPProtocol/LKHTTPProtocol.m; sourceTree = "<group>"; };
 		53A9125F1E72919300F0ADBD /* MyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyURLProtocol.h; sourceTree = "<group>"; };
 		53A912601E72919300F0ADBD /* MyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyURLProtocol.m; sourceTree = "<group>"; };
+		53BE01D01E7C223F005E9E54 /* start_local.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = start_local.c; sourceTree = "<group>"; };
+		53BE01D11E7C223F005E9E54 /* start_local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = start_local.h; sourceTree = "<group>"; };
+		53BE01F61E7CB4CE005E9E54 /* libev.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libev.a; path = LKBrowser/3rd/libev.a; sourceTree = "<group>"; };
+		53BE01F71E7CB4CE005E9E54 /* libmbedcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmbedcrypto.a; path = LKBrowser/3rd/libmbedcrypto.a; sourceTree = "<group>"; };
+		53BE01F81E7CB4CE005E9E54 /* libmbedtls.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmbedtls.a; path = LKBrowser/3rd/libmbedtls.a; sourceTree = "<group>"; };
+		53BE01F91E7CB4CE005E9E54 /* libpcre.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpcre.a; path = LKBrowser/3rd/libpcre.a; sourceTree = "<group>"; };
+		53BE01FA1E7CB4CE005E9E54 /* libshadowsocks-libev.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libshadowsocks-libev.a"; path = "LKBrowser/3rd/libshadowsocks-libev.a"; sourceTree = "<group>"; };
+		53BE01FB1E7CB4CE005E9E54 /* libsodium.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsodium.a; path = LKBrowser/3rd/libsodium.a; sourceTree = "<group>"; };
+		53BE01FC1E7CB4CE005E9E54 /* libudns.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libudns.a; path = LKBrowser/3rd/libudns.a; sourceTree = "<group>"; };
 		53F440771E7A5F8B00C4DECC /* LKTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKTabViewController.h; path = Tab/LKTabViewController.h; sourceTree = "<group>"; };
 		53F440781E7A5F8B00C4DECC /* LKTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKTabViewController.m; path = Tab/LKTabViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,13 +65,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				53077EE71E779FC2009F8E43 /* shadowsocks.h in Frameworks */,
-				53077EE41E779FA3009F8E43 /* libsodium.a in Frameworks */,
-				53077EE51E779FA3009F8E43 /* libudns.a in Frameworks */,
-				53077EE01E779FA3009F8E43 /* libmbedcrypto.a in Frameworks */,
-				53077EE21E779FA3009F8E43 /* libpcre.a in Frameworks */,
-				53077EE11E779FA3009F8E43 /* libmbedtls.a in Frameworks */,
-				53077EDF1E779FA3009F8E43 /* libev.a in Frameworks */,
-				53077EE31E779FA3009F8E43 /* libshadowsocks-libev.a in Frameworks */,
+				53BE01FD1E7CB4CE005E9E54 /* libev.a in Frameworks */,
+				53BE01FE1E7CB4CE005E9E54 /* libmbedcrypto.a in Frameworks */,
+				53BE01FF1E7CB4CE005E9E54 /* libmbedtls.a in Frameworks */,
+				53BE02001E7CB4CE005E9E54 /* libpcre.a in Frameworks */,
+				53BE02011E7CB4CE005E9E54 /* libshadowsocks-libev.a in Frameworks */,
+				53BE02021E7CB4CE005E9E54 /* libsodium.a in Frameworks */,
+				53BE02031E7CB4CE005E9E54 /* libudns.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,14 +81,14 @@
 		53077EC91E779F73009F8E43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53BE01F61E7CB4CE005E9E54 /* libev.a */,
+				53BE01F71E7CB4CE005E9E54 /* libmbedcrypto.a */,
+				53BE01F81E7CB4CE005E9E54 /* libmbedtls.a */,
+				53BE01F91E7CB4CE005E9E54 /* libpcre.a */,
+				53BE01FA1E7CB4CE005E9E54 /* libshadowsocks-libev.a */,
+				53BE01FB1E7CB4CE005E9E54 /* libsodium.a */,
+				53BE01FC1E7CB4CE005E9E54 /* libudns.a */,
 				53077EE61E779FB5009F8E43 /* shadowsocks.h */,
-				53077ED81E779FA3009F8E43 /* libev.a */,
-				53077ED91E779FA3009F8E43 /* libmbedcrypto.a */,
-				53077EDA1E779FA3009F8E43 /* libmbedtls.a */,
-				53077EDB1E779FA3009F8E43 /* libpcre.a */,
-				53077EDC1E779FA3009F8E43 /* libshadowsocks-libev.a */,
-				53077EDD1E779FA3009F8E43 /* libsodium.a */,
-				53077EDE1E779FA3009F8E43 /* libudns.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,6 +124,8 @@
 				537C0E631E710D1500BE58D7 /* LaunchScreen.storyboard */,
 				537C0E661E710D1500BE58D7 /* Info.plist */,
 				537C0E551E710D1500BE58D7 /* Supporting Files */,
+				53BE01D01E7C223F005E9E54 /* start_local.c */,
+				53BE01D11E7C223F005E9E54 /* start_local.h */,
 			);
 			path = LKBrowser;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 				537C0E571E710D1500BE58D7 /* main.m in Sources */,
 				537C0E7A1E71600E00BE58D7 /* LKHTTPProtocol.m in Sources */,
 				53A912611E72919300F0ADBD /* MyURLProtocol.m in Sources */,
+				53BE01D21E7C223F005E9E54 /* start_local.c in Sources */,
 				53F440791E7A5F8B00C4DECC /* LKTabViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,7 +362,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = TV7X9S92KX;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -367,6 +373,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/LKBrowser/3rd",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.lookis.LKBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -378,7 +385,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = TV7X9S92KX;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -389,6 +396,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/LKBrowser/3rd",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.lookis.LKBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
