@@ -45,7 +45,7 @@ profile_t profile;
         _backgroundIdentifier = UIBackgroundTaskInvalid;
     }];
     NSLog(@"enter background task");
-    _killerTimer = [NSTimer scheduledTimerWithTimeInterval:10 repeats:NO block:^(NSTimer *timer){
+    _killerTimer = [NSTimer scheduledTimerWithTimeInterval:120 repeats:NO block:^(NSTimer *timer){
         if(serverThread){
             pthread_kill(serverThread, SIGUSR1);
             pthread_join(serverThread, nil);

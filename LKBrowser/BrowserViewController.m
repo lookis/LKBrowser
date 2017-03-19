@@ -99,13 +99,16 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
 - (IBAction)gotoUrl:(id)sender{
     NSLog(@"gotoUrl");
-    NSString *url = nil;
+    NSURL *url = nil;
     if([[_textAddress text] hasPrefix:@"http://"] || [[_textAddress text] hasPrefix:@"https://"]){
-        url = [_textAddress text];
+        url = [NSURL URLWithString:[_textAddress text]];
     }else{
-        url = [NSString stringWithFormat:@"http://%@", [_textAddress text]];
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", [_textAddress text]]];
     }
-    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    if(!url){
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/search?q=%@", [[_textAddress text]stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]]];
+    }
+    [_webView loadRequest:[NSURLRequest requestWithURL:url]];
     [_textAddress resignFirstResponder];
 }
 
