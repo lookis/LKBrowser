@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		53077EE71E779FC2009F8E43 /* shadowsocks.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EE61E779FB5009F8E43 /* shadowsocks.h */; };
+		5370E8541E7EB7F9009DDAE1 /* LKAddressBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5370E8531E7EB7F9009DDAE1 /* LKAddressBarViewController.m */; };
 		537A3B1E1E79882200BA76F1 /* LKTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 537A3B1D1E79882200BA76F1 /* LKTabCell.m */; };
 		537C0E571E710D1500BE58D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E561E710D1500BE58D7 /* main.m */; };
 		537C0E5A1E710D1500BE58D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E591E710D1500BE58D7 /* AppDelegate.m */; };
@@ -30,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		53077EE61E779FB5009F8E43 /* shadowsocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shadowsocks.h; sourceTree = "<group>"; };
+		5370E8521E7EB7F9009DDAE1 /* LKAddressBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKAddressBarViewController.h; sourceTree = "<group>"; };
+		5370E8531E7EB7F9009DDAE1 /* LKAddressBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKAddressBarViewController.m; sourceTree = "<group>"; };
 		537A3B1C1E79882200BA76F1 /* LKTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKTabCell.h; path = Tab/LKTabCell.h; sourceTree = "<group>"; };
 		537A3B1D1E79882200BA76F1 /* LKTabCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKTabCell.m; path = Tab/LKTabCell.m; sourceTree = "<group>"; };
 		537C0E521E710D1500BE58D7 /* LKBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LKBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +129,8 @@
 				537C0E551E710D1500BE58D7 /* Supporting Files */,
 				53BE01D01E7C223F005E9E54 /* start_local.c */,
 				53BE01D11E7C223F005E9E54 /* start_local.h */,
+				5370E8521E7EB7F9009DDAE1 /* LKAddressBarViewController.h */,
+				5370E8531E7EB7F9009DDAE1 /* LKAddressBarViewController.m */,
 			);
 			path = LKBrowser;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5370E8541E7EB7F9009DDAE1 /* LKAddressBarViewController.m in Sources */,
 				537C0E5D1E710D1500BE58D7 /* BrowserViewController.m in Sources */,
 				537A3B1E1E79882200BA76F1 /* LKTabCell.m in Sources */,
 				537C0E5A1E710D1500BE58D7 /* AppDelegate.m in Sources */,

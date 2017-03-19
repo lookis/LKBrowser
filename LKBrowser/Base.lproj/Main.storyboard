@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Sjf-jV-wYo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Bal-HI-dgG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O2S-8h-oSb">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aIF-B9-pfy">
                                     <size key="itemSize" width="50" height="50"/>
@@ -68,52 +68,20 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkU-Zm-n5q" userLabel="Top View">
-                                <rect key="frame" x="0.0" y="20" width="320" height="46"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter website or keyword to search" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sFV-3b-Jm3">
-                                        <rect key="frame" x="8" y="8" width="246" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Hhq-kS-4Gp"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
-                                        <connections>
-                                            <action selector="endEditing:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="uQC-Ra-djK"/>
-                                            <action selector="gotoUrl:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="EUS-3o-j7I"/>
-                                            <action selector="startEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="fYA-iC-n2O"/>
-                                        </connections>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7g6-h2-9Dt">
-                                        <rect key="frame" x="254" y="8" width="66" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="66" id="bgh-m7-XE9"/>
-                                            <constraint firstAttribute="height" constant="30" id="uQV-1N-pfk"/>
-                                        </constraints>
-                                        <state key="normal" title="Cancel"/>
-                                        <connections>
-                                            <action selector="cancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dKX-bN-uie"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ibl-cI-TQG" userLabel="Top View">
+                                <rect key="frame" x="0.0" y="20" width="375" height="46"/>
                                 <constraints>
-                                    <constraint firstItem="7g6-h2-9Dt" firstAttribute="trailing" secondItem="VkU-Zm-n5q" secondAttribute="trailing" id="40K-CM-bfh"/>
-                                    <constraint firstItem="sFV-3b-Jm3" firstAttribute="leading" secondItem="VkU-Zm-n5q" secondAttribute="leading" constant="8" id="Ell-i4-vQD"/>
-                                    <constraint firstItem="7g6-h2-9Dt" firstAttribute="centerY" secondItem="sFV-3b-Jm3" secondAttribute="centerY" id="Hdo-8a-O8Y"/>
-                                    <constraint firstItem="7g6-h2-9Dt" firstAttribute="top" secondItem="VkU-Zm-n5q" secondAttribute="top" constant="8" id="HmD-yL-Qjy"/>
-                                    <constraint firstItem="sFV-3b-Jm3" firstAttribute="trailing" secondItem="7g6-h2-9Dt" secondAttribute="leading" id="K9A-3b-zET"/>
-                                    <constraint firstAttribute="height" constant="46" id="Ljx-G0-z7b"/>
-                                    <constraint firstItem="sFV-3b-Jm3" firstAttribute="top" secondItem="VkU-Zm-n5q" secondAttribute="top" constant="8" id="QQl-ga-yPQ"/>
+                                    <constraint firstAttribute="height" constant="46" id="B37-co-QLv"/>
                                 </constraints>
-                            </view>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njl-oV-wWC">
-                                <rect key="frame" x="0.0" y="66" width="320" height="458"/>
+                                <connections>
+                                    <segue destination="IR5-0c-qli" kind="embed" identifier="addressBarEmbed" id="MIj-EY-xdp"/>
+                                </connections>
+                            </containerView>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="njl-oV-wWC">
+                                <rect key="frame" x="0.0" y="66" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -121,10 +89,10 @@
                                 </connections>
                             </webView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcB-nl-7p2">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <subviews>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYP-fO-gKO">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="7j2-gE-kpx"/>
                                         </constraints>
@@ -171,10 +139,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WuS-BF-wLi" userLabel="Status Bar Background">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                 <subviews>
                                     <progressView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="41H-7T-zhi">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
                                     </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,16 +159,16 @@
                         <constraints>
                             <constraint firstItem="AcB-nl-7p2" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="04R-zj-1bs"/>
                             <constraint firstItem="WuS-BF-wLi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5i7-0U-eEV"/>
-                            <constraint firstItem="VkU-Zm-n5q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Cad-qd-ZYf"/>
                             <constraint firstItem="WuS-BF-wLi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="K8z-CA-0vM"/>
-                            <constraint firstItem="VkU-Zm-n5q" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="ROy-YM-0Gl"/>
                             <constraint firstItem="njl-oV-wWC" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="UYY-rl-lOw"/>
-                            <constraint firstItem="VkU-Zm-n5q" firstAttribute="top" secondItem="WuS-BF-wLi" secondAttribute="bottom" id="VTT-R2-ItA"/>
                             <constraint firstItem="njl-oV-wWC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Vd8-j2-byh"/>
+                            <constraint firstItem="Ibl-cI-TQG" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="Zvj-07-NXi"/>
                             <constraint firstItem="njl-oV-wWC" firstAttribute="bottom" secondItem="AcB-nl-7p2" secondAttribute="top" id="cvn-As-DC1"/>
+                            <constraint firstItem="njl-oV-wWC" firstAttribute="top" secondItem="Ibl-cI-TQG" secondAttribute="bottom" id="mgd-ho-Z9L"/>
                             <constraint firstItem="AcB-nl-7p2" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="qfo-Xc-7cG"/>
+                            <constraint firstItem="Ibl-cI-TQG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="rAE-KP-pnY"/>
                             <constraint firstItem="AcB-nl-7p2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sa0-2G-uKP"/>
-                            <constraint firstItem="njl-oV-wWC" firstAttribute="top" secondItem="VkU-Zm-n5q" secondAttribute="bottom" id="tYo-Bm-BO6"/>
+                            <constraint firstItem="Ibl-cI-TQG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v1x-fs-q83"/>
                             <constraint firstItem="WuS-BF-wLi" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="zwy-C1-g9A"/>
                         </constraints>
                         <connections>
@@ -216,13 +184,11 @@
                         <outlet property="buttonReload" destination="T4u-ZG-LsH" id="pf7-hl-uZk"/>
                         <outlet property="buttonShare" destination="sFc-1s-Swn" id="XIg-ds-aSV"/>
                         <outlet property="buttonTabs" destination="YZj-JE-rbE" id="oeO-y9-7nC"/>
-                        <outlet property="cancel" destination="7g6-h2-9Dt" id="QVY-By-q6T"/>
                         <outlet property="panRecognizer" destination="m0n-bQ-KrH" id="bSf-qk-uO4"/>
                         <outlet property="progressBar" destination="41H-7T-zhi" id="nKg-ce-irk"/>
-                        <outlet property="textAddress" destination="sFV-3b-Jm3" id="LlL-Df-jPr"/>
                         <outlet property="toolbar" destination="hYP-fO-gKO" id="tZm-Fe-oYG"/>
-                        <outlet property="topView" destination="VkU-Zm-n5q" id="0Gz-mW-y8w"/>
-                        <outlet property="topViewTopConstraint" destination="VTT-R2-ItA" id="ShY-C9-0Xr"/>
+                        <outlet property="topView" destination="Ibl-cI-TQG" id="tcV-fc-6F8"/>
+                        <outlet property="topViewTopConstraint" destination="rAE-KP-pnY" id="165-NT-67U"/>
                         <outlet property="webView" destination="njl-oV-wWC" id="8wY-JF-q1W"/>
                     </connections>
                 </viewController>
@@ -245,7 +211,63 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="938" y="100"/>
+            <point key="canvasLocation" x="937.5" y="99.295774647887328"/>
+        </scene>
+        <!--Address Bar View Controller-->
+        <scene sceneID="w6f-MD-Rx0">
+            <objects>
+                <viewController id="IR5-0c-qli" customClass="LKAddressBarViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zxR-AK-W3V"/>
+                        <viewControllerLayoutGuide type="bottom" id="yb1-mh-tNX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lr5-sJ-KDm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter website or keyword to search" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fH5-Va-Y7x" userLabel="Address Bar">
+                                <rect key="frame" x="8" y="8" width="359" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="endEditing:" destination="IR5-0c-qli" eventType="editingDidEnd" id="mYh-DV-5Ze"/>
+                                    <action selector="gotoUrl:" destination="IR5-0c-qli" eventType="primaryActionTriggered" id="CfN-3t-gDv"/>
+                                    <action selector="startEditing:" destination="IR5-0c-qli" eventType="editingDidBegin" id="npN-pi-Bgq"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAv-yH-140" userLabel="Cancel">
+                                <rect key="frame" x="367" y="8" width="66" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="K1Q-jV-Tdg"/>
+                                    <constraint firstAttribute="height" constant="30" id="yPb-7I-den"/>
+                                </constraints>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancel:" destination="IR5-0c-qli" eventType="touchUpInside" id="RIw-uh-c4z"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fH5-Va-Y7x" firstAttribute="top" secondItem="zxR-AK-W3V" secondAttribute="bottom" constant="8" id="00g-kt-Eu5"/>
+                            <constraint firstItem="fH5-Va-Y7x" firstAttribute="bottom" secondItem="yb1-mh-tNX" secondAttribute="top" constant="-8" id="3at-Ph-Ss7"/>
+                            <constraint firstItem="fH5-Va-Y7x" firstAttribute="trailing" secondItem="EAv-yH-140" secondAttribute="leading" id="O3l-Hi-UPr"/>
+                            <constraint firstItem="fH5-Va-Y7x" firstAttribute="leading" secondItem="Lr5-sJ-KDm" secondAttribute="leading" constant="8" id="XQi-Pf-0iZ"/>
+                            <constraint firstItem="EAv-yH-140" firstAttribute="centerY" secondItem="fH5-Va-Y7x" secondAttribute="centerY" id="aSj-gb-VgU"/>
+                            <constraint firstItem="EAv-yH-140" firstAttribute="trailing" secondItem="Lr5-sJ-KDm" secondAttribute="trailing" constant="58" id="joz-ug-0lF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addressBar" destination="fH5-Va-Y7x" id="JSV-9O-zBW"/>
+                        <outlet property="btnCancel" destination="EAv-yH-140" id="Kdo-dk-rY0"/>
+                        <outlet property="cancelTrailingConstraint" destination="joz-ug-0lF" id="tYP-eB-iD6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KpR-rE-CF2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1751.25" y="97.183098591549296"/>
         </scene>
     </scenes>
     <resources>
