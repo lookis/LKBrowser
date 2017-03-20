@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "pthread.h"
 #import "start_local.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 @property (nonatomic, strong) NSTimer *killerTimer;
@@ -23,6 +25,8 @@ profile_t profile;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [Fabric with:@[[Crashlytics class]]];
+
     [NSURLProtocol registerClass:[LKHTTPProtocol class]];
     NSLog(@"didFinishLaunchingWithOptions");
     return YES;

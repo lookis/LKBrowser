@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		53077EE71E779FC2009F8E43 /* shadowsocks.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EE61E779FB5009F8E43 /* shadowsocks.h */; };
+		5362722A1E7FB11300AD616E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536272281E7FB11300AD616E /* Fabric.framework */; };
+		5362722B1E7FB11300AD616E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536272291E7FB11300AD616E /* Crashlytics.framework */; };
 		5370E8541E7EB7F9009DDAE1 /* LKAddressBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5370E8531E7EB7F9009DDAE1 /* LKAddressBarViewController.m */; };
 		537A3B1E1E79882200BA76F1 /* LKTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 537A3B1D1E79882200BA76F1 /* LKTabCell.m */; };
 		537C0E571E710D1500BE58D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E561E710D1500BE58D7 /* main.m */; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		53077EE61E779FB5009F8E43 /* shadowsocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shadowsocks.h; sourceTree = "<group>"; };
+		536272281E7FB11300AD616E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = LKBrowser/3rd/Fabric.framework; sourceTree = "<group>"; };
+		536272291E7FB11300AD616E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = LKBrowser/3rd/Crashlytics.framework; sourceTree = "<group>"; };
 		5370E8521E7EB7F9009DDAE1 /* LKAddressBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKAddressBarViewController.h; sourceTree = "<group>"; };
 		5370E8531E7EB7F9009DDAE1 /* LKAddressBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKAddressBarViewController.m; sourceTree = "<group>"; };
 		537A3B1C1E79882200BA76F1 /* LKTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKTabCell.h; path = Tab/LKTabCell.h; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				53BE01FE1E7CB4CE005E9E54 /* libmbedcrypto.a in Frameworks */,
 				53BE01FF1E7CB4CE005E9E54 /* libmbedtls.a in Frameworks */,
 				53BE02001E7CB4CE005E9E54 /* libpcre.a in Frameworks */,
+				5362722A1E7FB11300AD616E /* Fabric.framework in Frameworks */,
+				5362722B1E7FB11300AD616E /* Crashlytics.framework in Frameworks */,
 				53BE02011E7CB4CE005E9E54 /* libshadowsocks-libev.a in Frameworks */,
 				53BE02021E7CB4CE005E9E54 /* libsodium.a in Frameworks */,
 				53BE02031E7CB4CE005E9E54 /* libudns.a in Frameworks */,
@@ -84,6 +90,8 @@
 		53077EC91E779F73009F8E43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				536272281E7FB11300AD616E /* Fabric.framework */,
+				536272291E7FB11300AD616E /* Crashlytics.framework */,
 				53BE01F61E7CB4CE005E9E54 /* libev.a */,
 				53BE01F71E7CB4CE005E9E54 /* libmbedcrypto.a */,
 				53BE01F81E7CB4CE005E9E54 /* libmbedtls.a */,
@@ -175,6 +183,7 @@
 				537C0E4E1E710D1500BE58D7 /* Sources */,
 				537C0E4F1E710D1500BE58D7 /* Frameworks */,
 				537C0E501E710D1500BE58D7 /* Resources */,
+				536272271E7FB0D200AD616E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -231,6 +240,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		536272271E7FB0D200AD616E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run fa65dd437802ac23cccfeedad8d57d69624f6462 637a3326629f4588b60e53d2a200d78c69f1f42ae02aba2b392b802bfb881771";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		537C0E4E1E710D1500BE58D7 /* Sources */ = {
@@ -369,7 +394,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = TV7X9S92KX;
 				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = LKBrowser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -389,7 +417,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = TV7X9S92KX;
 				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = LKBrowser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
