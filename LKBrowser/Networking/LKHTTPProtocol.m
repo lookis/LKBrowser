@@ -47,6 +47,7 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
 }
 
 - (void)stopLoading {
+    NSLog(@"endLoading");
     [self.task cancel];
     [LKSessionManager protocolStopLoading:self];
     self.task = nil;

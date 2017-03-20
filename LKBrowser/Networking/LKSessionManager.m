@@ -12,6 +12,7 @@
 @interface LKSessionManager() <NSURLSessionDataDelegate>
 @property (nonatomic, strong) NSMutableDictionary<NSURLSessionTask *, NSURLProtocol *> *sessionDictionary;
 @property (nonatomic, strong) NSURLSession *session;
+@property (nonatomic, strong) NSLock *lock;
 @end
 
 @implementation LKSessionManager
@@ -22,6 +23,7 @@ static LKSessionManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedMyManager = [[self alloc] init];
+        sharedMyManager.lock = [[NSLock alloc] init];
     });
     return sharedMyManager;
 }
@@ -31,12 +33,16 @@ static LKSessionManager *sharedMyManager = nil;
     if (![manager sessionDictionary]){
         manager.sessionDictionary = [[NSMutableDictionary alloc] init];
     }
+    [manager.lock lock];
     [manager.sessionDictionary setObject:protocol forKey:task];
+    [manager.lock unlock];
 }
 
 + (void) protocolStopLoading:(LKHTTPProtocol *)protocol{
     LKSessionManager *manager = [self singleton];
+    [manager.lock lock];
     [manager.sessionDictionary removeObjectForKey:protocol.task];
+    [manager.lock unlock];
 }
 
 + (NSURLSession *) sharedSession {
