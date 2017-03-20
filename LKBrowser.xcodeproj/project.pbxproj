@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		53077EE71E779FC2009F8E43 /* shadowsocks.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 53077EE61E779FB5009F8E43 /* shadowsocks.h */; };
-		5362722A1E7FB11300AD616E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536272281E7FB11300AD616E /* Fabric.framework */; };
-		5362722B1E7FB11300AD616E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536272291E7FB11300AD616E /* Crashlytics.framework */; };
+		5362722C1E7FB5E600AD616E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536272281E7FB11300AD616E /* Fabric.framework */; };
+		5362722D1E7FB5E600AD616E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536272291E7FB11300AD616E /* Crashlytics.framework */; };
 		5370E8541E7EB7F9009DDAE1 /* LKAddressBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5370E8531E7EB7F9009DDAE1 /* LKAddressBarViewController.m */; };
 		537A3B1E1E79882200BA76F1 /* LKTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 537A3B1D1E79882200BA76F1 /* LKTabCell.m */; };
 		537C0E571E710D1500BE58D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E561E710D1500BE58D7 /* main.m */; };
@@ -72,12 +72,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				53077EE71E779FC2009F8E43 /* shadowsocks.h in Frameworks */,
+				5362722C1E7FB5E600AD616E /* Fabric.framework in Frameworks */,
+				5362722D1E7FB5E600AD616E /* Crashlytics.framework in Frameworks */,
 				53BE01FD1E7CB4CE005E9E54 /* libev.a in Frameworks */,
 				53BE01FE1E7CB4CE005E9E54 /* libmbedcrypto.a in Frameworks */,
 				53BE01FF1E7CB4CE005E9E54 /* libmbedtls.a in Frameworks */,
 				53BE02001E7CB4CE005E9E54 /* libpcre.a in Frameworks */,
-				5362722A1E7FB11300AD616E /* Fabric.framework in Frameworks */,
-				5362722B1E7FB11300AD616E /* Crashlytics.framework in Frameworks */,
 				53BE02011E7CB4CE005E9E54 /* libshadowsocks-libev.a in Frameworks */,
 				53BE02021E7CB4CE005E9E54 /* libsodium.a in Frameworks */,
 				53BE02031E7CB4CE005E9E54 /* libudns.a in Frameworks */,
@@ -253,7 +253,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run fa65dd437802ac23cccfeedad8d57d69624f6462 637a3326629f4588b60e53d2a200d78c69f1f42ae02aba2b392b802bfb881771";
+			shellScript = "./Frameworks/Fabric.framework/run fa65dd437802ac23cccfeedad8d57d69624f6462 637a3326629f4588b60e53d2a200d78c69f1f42ae02aba2b392b802bfb881771";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -397,6 +397,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/LKBrowser/3rd",
 				);
 				INFOPLIST_FILE = LKBrowser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -420,6 +421,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/LKBrowser/3rd",
 				);
 				INFOPLIST_FILE = LKBrowser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
