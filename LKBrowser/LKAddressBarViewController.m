@@ -34,9 +34,6 @@
         if(![_addressBar isFirstResponder]){
             [_addressBar setTextAlignment:NSTextAlignmentCenter];
             [_addressBar setText:[_dataSource addressBarDisplayData]];
-        }else{
-            [_addressBar setTextAlignment:NSTextAlignmentLeft];
-            [_addressBar setText: [_dataSource addressBarValue]];
         }
     }
 }
