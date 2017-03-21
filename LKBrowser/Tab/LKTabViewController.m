@@ -55,7 +55,7 @@ static NSString * const reuseIdentifier = @"LKCell";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"appear");
+    [[self collectionView] reloadData];
 }
 
 /*
@@ -84,7 +84,10 @@ static NSString * const reuseIdentifier = @"LKCell";
     [browserController.view drawViewHierarchyInRect:browserController.view.bounds afterScreenUpdates:YES];
     UIImage *copied = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    [[cell contentView] addSubview:[[UIImageView alloc] initWithImage:copied]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:copied];
+    [[cell contentView] addSubview:imageView];
+    [imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [imageView setFrame:cell.contentView.frame];
     return cell;
 }
 
