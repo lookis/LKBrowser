@@ -60,7 +60,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     // Do any additional setup after loading the view, typically from a nib.
     [_panRecognizer setDelegate:self];
     NSURLRequest *request = [NSURLRequest requestWithURL:_startupPage];
-    _startupPage = nil;
+//    _startupPage = nil;
     [_webView loadRequest:request];
     [[_webView scrollView] addGestureRecognizer:_panRecognizer];
     [self renderButtons];

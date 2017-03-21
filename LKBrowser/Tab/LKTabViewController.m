@@ -9,12 +9,14 @@
 #import "LKTabViewController.h"
 #import "LKTabCell.h"
 #import "LKTabTransitioning.h"
+#import "LKTabExitTransitioning.h"
 #import "BrowserViewController.h"
 
 @interface LKTabViewController () <UIViewControllerTransitioningDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *cellLayout;
 @property (nonatomic, strong) NSMutableArray<BrowserViewController *> *browserArray;
 @property (nonatomic, strong) LKTabTransitioning *presentTransitioning;
+@property (nonatomic, strong) LKTabExitTransitioning *dismissTransitioning;
 @property (nonatomic) NSInteger currentTab;
 @end
 
@@ -30,6 +32,7 @@ static NSString * const reuseIdentifier = @"LKCell";
     [browserController setUrl:@"http://www.ip138.com"];
     _browserArray = [NSMutableArray arrayWithObject:browserController];
     _presentTransitioning = [[LKTabTransitioning alloc] init];
+    _dismissTransitioning = [[LKTabExitTransitioning alloc] init];
     return self;
 }
 
@@ -55,6 +58,7 @@ static NSString * const reuseIdentifier = @"LKCell";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"appear");
     [[self collectionView] reloadData];
 }
 
@@ -94,6 +98,7 @@ static NSString * const reuseIdentifier = @"LKCell";
 #pragma mark <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self setSelectedFrame:[self.collectionView cellForItemAtIndexPath:indexPath].frame];
     BrowserViewController *browserController = [_browserArray objectAtIndex:indexPath.row];
     [browserController setTransitioningDelegate:self];
     [self presentViewController:browserController animated:YES completion:nil];
@@ -104,6 +109,11 @@ static NSString * const reuseIdentifier = @"LKCell";
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
     return _presentTransitioning;
+}
+
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+    return _dismissTransitioning;
 }
 
 /*

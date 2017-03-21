@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface LKTabViewController : UICollectionViewController
--(void)addEmptyTabWithURL:(NSURL * _Nullable)url;
+@property (nonatomic) CGRect selectedFrame;
+
+- (void)addEmptyTabWithURL:(NSURL * _Nullable)url;
+
 @end
