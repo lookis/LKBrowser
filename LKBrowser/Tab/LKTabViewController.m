@@ -67,6 +67,7 @@ static NSString * const reuseIdentifier = @"LKCell";
 -(void)viewWillAppear:(BOOL)animated{
     NSLog(@"appear");
     [[self collectionView] reloadData];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -74,7 +75,7 @@ static NSString * const reuseIdentifier = @"LKCell";
         _firstLoading = NO;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self setSelectedFrame:[self.collectionView cellForItemAtIndexPath:indexPath].frame];
-        [self presentViewController:[_browserArray firstObject] animated:YES completion:nil];
+        [self presentViewController:[_browserArray firstObject] animated:NO completion:nil];
     }
 }
 
