@@ -93,6 +93,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
+    NSLog(@"webView webViewDidStartLoad %@", webView.request.URL.absoluteString);
     [_addressBarController reloadData];
 }
 
@@ -100,7 +101,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     _addressInLoading = nil;
     [_addressBarController reloadData];
-    NSLog(@"webViewDidFinishLoad");
+    NSLog(@"webView webViewDidFinishLoad:%@", [[[webView request] URL] absoluteString]);
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{
         [_progressBar setHidden:YES];

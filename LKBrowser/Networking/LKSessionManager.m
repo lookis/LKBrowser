@@ -54,8 +54,11 @@ static LKSessionManager *sharedMyManager = nil;
                                (NSString *)kCFStreamPropertySOCKSProxyPort : @1081,
                                };
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        [configuration setTimeoutIntervalForRequest:30];
         [configuration setConnectionProxyDictionary:dict];
-        manager.session = [NSURLSession sessionWithConfiguration:configuration delegate:manager delegateQueue:nil];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        [queue setMaxConcurrentOperationCount:30];
+        manager.session = [NSURLSession sessionWithConfiguration:configuration delegate:manager delegateQueue:queue];
     }
     return manager.session;
 }

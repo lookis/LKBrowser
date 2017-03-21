@@ -11,6 +11,7 @@
 #import "BrowserViewController.h"
 
 @interface LKTabViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *cellLayout;
 @property (nonatomic, strong) NSMutableArray<BrowserViewController *> *browserArray;
 @property (nonatomic) NSInteger currentTab;
 @end
@@ -22,15 +23,9 @@ static NSString * const reuseIdentifier = @"LKCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    if(!_browserArray){
-//        _browserArray = [[NSMutableArray alloc] init];
-//    }
-    
-    // create first tab;
-//    BrowserViewController *browserController = [[BrowserViewController alloc] init];
-//    [_browserArray addObject:browserController];
-//    [[self view] addSubview:browserController.view];
-//    _currentTab = 0;
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    CGSize size = CGSizeMake(rect.size.width/4, rect.size.height/4);
+    [_cellLayout setItemSize:size];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,9 +58,7 @@ static NSString * const reuseIdentifier = @"LKCell";
     [browserController.view drawViewHierarchyInRect:browserController.view.bounds afterScreenUpdates:YES];
     UIImage *copied = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:copied];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [[cell backgroundView] addSubview:imageView];
+    [cell setImage:copied];
     return cell;
 }
 

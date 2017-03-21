@@ -21,11 +21,13 @@ static NSString *const URLProtocolProcessedKey = @"LKHTTPProtocolProcessed";
 #pragma mark NSURLProtocol
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    if (![NSURLProtocol propertyForKey:BrowserRedirectedRequest inRequest:request] && [NSURLProtocol propertyForKey:URLProtocolProcessedKey inRequest:request]) {
-        return NO;
+    if ([[[request URL] scheme] isEqualToString:@"http"] || [[[request URL] scheme] isEqualToString:@"https"]){
+        if(![NSURLProtocol propertyForKey:URLProtocolProcessedKey inRequest:request] || [NSURLProtocol propertyForKey:BrowserRedirectedRequest inRequest:request]){
+            NSLog(@"canInitWithRequest: %@", request.URL.absoluteString);
+            return YES;
+        }
     }
-    NSLog(@"canInitWithRequest: %@", request.URL.absoluteString);
-    return YES;
+    return NO;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
