@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BrowserViewController : UIViewController
-
+- (void) setUrl:(NSString *)url;
 @end

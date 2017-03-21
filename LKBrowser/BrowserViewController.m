@@ -30,27 +30,46 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewTopConstraint;
 
+@property (nonatomic, strong) NSURL *startupPage;
 @property (nonatomic, strong) NSURL *addressInLoading;
-
 @property (strong, nonatomic) LKAddressBarViewController* addressBarController;
 @end
 
 @implementation BrowserViewController
 
+//- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+//    NSLog(@"BrowserViewController initWithCoder");
+//    return [super initWithCoder:aDecoder];
+//}
+
+//- (instancetype)initWithUrl:(NSString *)url{
+//    super initW
+//    self = [super init];
+//    NSLog(@"initWithUrl: %@", url);
+//    _url = [NSURL URLWithString:url];
+//    return self;
+//}
+
+- (void)setUrl:(NSString *)url{
+    _startupPage = [NSURL URLWithString:url];
+}
+
 - (void)viewDidLoad {
+    NSLog(@"BrowserViewController viewDidLoad");
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    //
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.ip138.com"]];
     [_panRecognizer setDelegate:self];
-    [[_webView scrollView] addGestureRecognizer:_panRecognizer];
+    NSURLRequest *request = [NSURLRequest requestWithURL:_startupPage];
+    _startupPage = nil;
     [_webView loadRequest:request];
+    [[_webView scrollView] addGestureRecognizer:_panRecognizer];
     [self renderButtons];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    NSLog(@"didReceiveMemoryWarning");
     // Dispose of any resources that can be recreated.
 }
 
@@ -76,6 +95,13 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSLog(@"webView shouldStartLoadWithRequest %@", request.URL.absoluteString);
+    _addressInLoading = request.URL;
+    [_addressBarController reloadData];
+    return YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    NSLog(@"webView webViewDidStartLoad %@", webView.request.URL.absoluteString);
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [_progressBar setHidden:NO];
     [_progressBar setProgress:0.0 animated:NO];
@@ -87,13 +113,6 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
         }
     }];
     [self renderButtons];
-    _addressInLoading = request.URL;
-    [_addressBarController reloadData];
-    return YES;
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView{
-    NSLog(@"webView webViewDidStartLoad %@", webView.request.URL.absoluteString);
     [_addressBarController reloadData];
 }
 
@@ -142,8 +161,8 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
     
 }
 
-- (IBAction)tabs:(id)sender{
-    
+- (IBAction)tab:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark UIGestureRecognizerDelegate

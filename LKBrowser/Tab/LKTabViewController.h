@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LKTabViewController : UIViewController
-
+@interface LKTabViewController : UICollectionViewController
+-(void)addEmptyTabWithURL:(NSURL * _Nullable)url;
 @end

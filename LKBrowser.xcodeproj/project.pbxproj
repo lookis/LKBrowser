@@ -27,6 +27,8 @@
 		53B1ECD61E7FB74B00CF8091 /* libudns.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B1ECCC1E7FB74B00CF8091 /* libudns.a */; };
 		53BE01D21E7C223F005E9E54 /* start_local.c in Sources */ = {isa = PBXBuildFile; fileRef = 53BE01D01E7C223F005E9E54 /* start_local.c */; };
 		53BE022B1E7E9D9B005E9E54 /* LKSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BE022A1E7E9D9B005E9E54 /* LKSessionManager.m */; };
+		53CC32751E80E1B500F29097 /* LKTabManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CC32741E80E1B500F29097 /* LKTabManagerViewController.m */; };
+		53CC327B1E811D5C00F29097 /* LKTabTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CC327A1E811D5C00F29097 /* LKTabTransitioning.m */; };
 		53F440791E7A5F8B00C4DECC /* LKTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F440781E7A5F8B00C4DECC /* LKTabViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,10 @@
 		53BE01D11E7C223F005E9E54 /* start_local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = start_local.h; sourceTree = "<group>"; };
 		53BE02291E7E9D9B005E9E54 /* LKSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKSessionManager.h; path = Networking/LKSessionManager.h; sourceTree = "<group>"; };
 		53BE022A1E7E9D9B005E9E54 /* LKSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKSessionManager.m; path = Networking/LKSessionManager.m; sourceTree = "<group>"; };
+		53CC32731E80E1B500F29097 /* LKTabManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKTabManagerViewController.h; path = Tab/LKTabManagerViewController.h; sourceTree = "<group>"; };
+		53CC32741E80E1B500F29097 /* LKTabManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKTabManagerViewController.m; path = Tab/LKTabManagerViewController.m; sourceTree = "<group>"; };
+		53CC32791E811D5C00F29097 /* LKTabTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKTabTransitioning.h; path = Tab/LKTabTransitioning.h; sourceTree = "<group>"; };
+		53CC327A1E811D5C00F29097 /* LKTabTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKTabTransitioning.m; path = Tab/LKTabTransitioning.m; sourceTree = "<group>"; };
 		53F440771E7A5F8B00C4DECC /* LKTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKTabViewController.h; path = Tab/LKTabViewController.h; sourceTree = "<group>"; };
 		53F440781E7A5F8B00C4DECC /* LKTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKTabViewController.m; path = Tab/LKTabViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +163,10 @@
 				537A3B1D1E79882200BA76F1 /* LKTabCell.m */,
 				53F440771E7A5F8B00C4DECC /* LKTabViewController.h */,
 				53F440781E7A5F8B00C4DECC /* LKTabViewController.m */,
+				53CC32731E80E1B500F29097 /* LKTabManagerViewController.h */,
+				53CC32741E80E1B500F29097 /* LKTabManagerViewController.m */,
+				53CC32791E811D5C00F29097 /* LKTabTransitioning.h */,
+				53CC327A1E811D5C00F29097 /* LKTabTransitioning.m */,
 			);
 			name = Tab;
 			sourceTree = "<group>";
@@ -262,12 +272,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5370E8541E7EB7F9009DDAE1 /* LKAddressBarViewController.m in Sources */,
+				53CC32751E80E1B500F29097 /* LKTabManagerViewController.m in Sources */,
 				537C0E5D1E710D1500BE58D7 /* BrowserViewController.m in Sources */,
 				537A3B1E1E79882200BA76F1 /* LKTabCell.m in Sources */,
 				537C0E5A1E710D1500BE58D7 /* AppDelegate.m in Sources */,
 				53BE022B1E7E9D9B005E9E54 /* LKSessionManager.m in Sources */,
 				537C0E571E710D1500BE58D7 /* main.m in Sources */,
 				537C0E7A1E71600E00BE58D7 /* LKHTTPProtocol.m in Sources */,
+				53CC327B1E811D5C00F29097 /* LKTabTransitioning.m in Sources */,
 				53BE01D21E7C223F005E9E54 /* start_local.c in Sources */,
 				53F440791E7A5F8B00C4DECC /* LKTabViewController.m in Sources */,
 			);

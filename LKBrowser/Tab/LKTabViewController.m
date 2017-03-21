@@ -8,17 +8,30 @@
 
 #import "LKTabViewController.h"
 #import "LKTabCell.h"
+#import "LKTabTransitioning.h"
 #import "BrowserViewController.h"
 
-@interface LKTabViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface LKTabViewController () <UIViewControllerTransitioningDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *cellLayout;
 @property (nonatomic, strong) NSMutableArray<BrowserViewController *> *browserArray;
+@property (nonatomic, strong) LKTabTransitioning *presentTransitioning;
 @property (nonatomic) NSInteger currentTab;
 @end
 
 static NSString * const reuseIdentifier = @"LKCell";
 
 @implementation LKTabViewController
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    NSLog(@"LKTabViewController init");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    BrowserViewController *browserController = [storyboard instantiateViewControllerWithIdentifier:@"browserViewController"];
+    [browserController setUrl:@"http://www.ip138.com"];
+    _browserArray = [NSMutableArray arrayWithObject:browserController];
+    _presentTransitioning = [[LKTabTransitioning alloc] init];
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +46,18 @@ static NSString * const reuseIdentifier = @"LKCell";
     // Dispose of any resources that can be recreated.
 }
 
+-(void)addEmptyTabWithURL:(NSString *)url{
+//    if(!url){
+//        [_browserArray addObject:[[BrowserViewController alloc] initWithUrl:@"baidu.com"]];
+//    }else{
+//        [_browserArray addObject:[[BrowserViewController alloc] initWithUrl:url]];
+//    }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"appear");
+}
+
 /*
 #pragma mark - Navigation
 
@@ -43,14 +68,15 @@ static NSString * const reuseIdentifier = @"LKCell";
 }
 */
 
-
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [_browserArray count];;
+    NSLog(@"browser count: %lu", (unsigned long)[_browserArray count]);
+    return [_browserArray count];
 }
 
 - (LKTabCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"show tab cell");
     // Configure the cell
     LKTabCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     BrowserViewController *browserController = _browserArray[indexPath.row];
@@ -58,16 +84,24 @@ static NSString * const reuseIdentifier = @"LKCell";
     [browserController.view drawViewHierarchyInRect:browserController.view.bounds afterScreenUpdates:YES];
     UIImage *copied = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    [cell setImage:copied];
+    [[cell contentView] addSubview:[[UIImageView alloc] initWithImage:copied]];
     return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"select %li/%li", (long)indexPath.section, (long)indexPath.row);
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    BrowserViewController *browserController = [_browserArray objectAtIndex:indexPath.row];
+    [browserController setTransitioningDelegate:self];
+    [self presentViewController:browserController animated:YES completion:nil];
 }
 
+
+#pragma mark <UIViewControllerAnimatedTransitioning>
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    return _presentTransitioning;
+}
 
 /*
  // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item

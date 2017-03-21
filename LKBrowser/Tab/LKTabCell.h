@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LKTabCell : UICollectionViewCell
-- (void)setImage:(UIImage *)image;
+
 @end
