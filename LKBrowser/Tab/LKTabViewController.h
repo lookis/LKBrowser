@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import "BrowserViewController.h"
 
 @interface LKTabViewController : UICollectionViewController
 @property (nonatomic) CGRect selectedFrame;
 
-- (void)addEmptyTabWithURL:(NSURL * _Nullable)url;
+- (BrowserViewController * _Nonnull)addEmptyTabWithURL:(NSString * _Nullable)url;
 
 @end

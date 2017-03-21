@@ -15,9 +15,9 @@
 @interface LKTabViewController () <UIViewControllerTransitioningDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *cellLayout;
 @property (nonatomic, strong) NSMutableArray<BrowserViewController *> *browserArray;
+@property (nonatomic) BOOL firstLoading;
 @property (nonatomic, strong) LKTabTransitioning *presentTransitioning;
 @property (nonatomic, strong) LKTabExitTransitioning *dismissTransitioning;
-@property (nonatomic) NSInteger currentTab;
 @end
 
 static NSString * const reuseIdentifier = @"LKCell";
@@ -27,21 +27,23 @@ static NSString * const reuseIdentifier = @"LKCell";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     NSLog(@"LKTabViewController init");
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    BrowserViewController *browserController = [storyboard instantiateViewControllerWithIdentifier:@"browserViewController"];
-    [browserController setUrl:@"http://www.ip138.com"];
-    _browserArray = [NSMutableArray arrayWithObject:browserController];
+    _browserArray = [[NSMutableArray alloc] init];
     _presentTransitioning = [[LKTabTransitioning alloc] init];
     _dismissTransitioning = [[LKTabExitTransitioning alloc] init];
+    _firstLoading = YES;
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"viewDidLoad in LKTabViewController");
     // Do any additional setup after loading the view.
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = CGSizeMake(rect.size.width/4, rect.size.height/4);
     [_cellLayout setItemSize:size];
+    if([_browserArray count] == 0){
+        [self addEmptyTabWithURL:@"http://www.ip138.com"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,17 +51,31 @@ static NSString * const reuseIdentifier = @"LKCell";
     // Dispose of any resources that can be recreated.
 }
 
--(void)addEmptyTabWithURL:(NSString *)url{
-//    if(!url){
-//        [_browserArray addObject:[[BrowserViewController alloc] initWithUrl:@"baidu.com"]];
-//    }else{
-//        [_browserArray addObject:[[BrowserViewController alloc] initWithUrl:url]];
-//    }
+-(BrowserViewController *)addEmptyTabWithURL:(NSString *)url{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    BrowserViewController *browserController = [storyboard instantiateViewControllerWithIdentifier:@"browserViewController"];
+    [browserController setTransitioningDelegate:self];
+    if(!url){
+        [browserController setUrl:@"http://www.google.com"];
+    }else{
+        [browserController setUrl:url];
+    }
+    [_browserArray addObject:browserController];
+    return browserController;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     NSLog(@"appear");
     [[self collectionView] reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    if(_firstLoading){
+        _firstLoading = NO;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self setSelectedFrame:[self.collectionView cellForItemAtIndexPath:indexPath].frame];
+        [self presentViewController:[_browserArray firstObject] animated:YES completion:nil];
+    }
 }
 
 /*
@@ -100,7 +116,6 @@ static NSString * const reuseIdentifier = @"LKCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self setSelectedFrame:[self.collectionView cellForItemAtIndexPath:indexPath].frame];
     BrowserViewController *browserController = [_browserArray objectAtIndex:indexPath.row];
-    [browserController setTransitioningDelegate:self];
     [self presentViewController:browserController animated:YES completion:nil];
 }
 
