@@ -26,7 +26,6 @@ static NSString * const reuseIdentifier = @"LKCell";
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
-    NSLog(@"LKTabViewController init");
     _browserArray = [[NSMutableArray alloc] init];
     _presentTransitioning = [[LKTabTransitioning alloc] init];
     _dismissTransitioning = [[LKTabExitTransitioning alloc] init];
@@ -36,7 +35,6 @@ static NSString * const reuseIdentifier = @"LKCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"viewDidLoad in LKTabViewController");
     // Do any additional setup after loading the view.
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = CGSizeMake(rect.size.width/4, rect.size.height/4);
@@ -65,7 +63,6 @@ static NSString * const reuseIdentifier = @"LKCell";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"appear");
     [[self collectionView] reloadData];
     
 }
@@ -92,12 +89,10 @@ static NSString * const reuseIdentifier = @"LKCell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSLog(@"browser count: %lu", (unsigned long)[_browserArray count]);
     return [_browserArray count];
 }
 
 - (LKTabCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"show tab cell");
     // Configure the cell
     LKTabCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     BrowserViewController *browserController = _browserArray[indexPath.row];
@@ -131,21 +126,6 @@ static NSString * const reuseIdentifier = @"LKCell";
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
     return _dismissTransitioning;
 }
-
-/*
- // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
- }
- 
- - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
- }
- 
- - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
- }
- */
 
 @end
 

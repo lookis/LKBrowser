@@ -43,7 +43,6 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 }
 
 - (void)viewDidLoad {
-    NSLog(@"BrowserViewController viewDidLoad");
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [_panRecognizer setDelegate:self];
