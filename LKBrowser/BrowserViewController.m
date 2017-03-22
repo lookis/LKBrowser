@@ -37,18 +37,6 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
 @implementation BrowserViewController
 
-//- (instancetype)initWithCoder:(NSCoder *)aDecoder{
-//    NSLog(@"BrowserViewController initWithCoder");
-//    return [super initWithCoder:aDecoder];
-//}
-
-//- (instancetype)initWithUrl:(NSString *)url{
-//    super initW
-//    self = [super init];
-//    NSLog(@"initWithUrl: %@", url);
-//    _url = [NSURL URLWithString:url];
-//    return self;
-//}
 
 - (void)setUrl:(NSString *)url{
     _startupPage = [NSURL URLWithString:url];
