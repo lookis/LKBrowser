@@ -106,6 +106,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    _cover = [self.view snapshotViewAfterScreenUpdates:NO];
     _addressInLoading = nil;
     [_addressBarController reloadData];
     NSLog(@"webView webViewDidFinishLoad:%@", [[[webView request] URL] absoluteString]);

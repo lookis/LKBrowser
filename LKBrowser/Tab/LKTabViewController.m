@@ -18,6 +18,7 @@
 @property (nonatomic) BOOL firstLoading;
 @property (nonatomic, strong) LKTabTransitioning *presentTransitioning;
 @property (nonatomic, strong) LKTabExitTransitioning *dismissTransitioning;
+@property (nonatomic, strong) NSTimer *refreshTimer;
 @end
 
 static NSString * const reuseIdentifier = @"LKCell";
@@ -60,10 +61,10 @@ static NSString * const reuseIdentifier = @"LKCell";
     return browserController;
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [[self collectionView] reloadData];
-    
 }
+
 
 -(void)viewDidAppear:(BOOL)animated{
     if(_firstLoading){
