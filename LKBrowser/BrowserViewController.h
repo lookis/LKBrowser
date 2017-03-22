@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BrowserViewController : UIViewController
-- (void) setUrl:(NSString *)url;
+@property (nonatomic, strong, nullable) UIView *cover;
 @end

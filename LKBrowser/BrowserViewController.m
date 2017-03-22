@@ -11,6 +11,8 @@
 #import "LKAddressBarViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
+#define HOMEPAGE @"http://www.google.com"
+
 static float const PROGRESS_VIEW_INTERVAL = (float)1.0/60;
 static float const PROGRESS_VIEW_MAX_BEFORE_LOADED = (float)0.95;
 static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
@@ -30,23 +32,18 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewTopConstraint;
 
-@property (nonatomic, strong) NSURL *startupPage;
 @property (nonatomic, strong) NSURL *addressInLoading;
 @property (strong, nonatomic) LKAddressBarViewController* addressBarController;
 @end
 
+
 @implementation BrowserViewController
-
-
-- (void)setUrl:(NSString *)url{
-    _startupPage = [NSURL URLWithString:url];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [_panRecognizer setDelegate:self];
-    NSURLRequest *request = [NSURLRequest requestWithURL:_startupPage];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:HOMEPAGE]];
 //    _startupPage = nil;
     [_webView loadRequest:request];
     [[_webView scrollView] addGestureRecognizer:_panRecognizer];
@@ -68,6 +65,10 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
         childViewController.dataSource = self;
         childViewController.delegate = self;
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    _cover = [self.view snapshotViewAfterScreenUpdates:NO];
 }
 
 - (void)renderButtons{

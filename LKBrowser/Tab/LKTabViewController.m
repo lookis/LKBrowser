@@ -53,11 +53,6 @@ static NSString * const reuseIdentifier = @"LKCell";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     BrowserViewController *browserController = [storyboard instantiateViewControllerWithIdentifier:@"browserViewController"];
     [browserController setTransitioningDelegate:self];
-    if(!url){
-        [browserController setUrl:@"http://www.google.com"];
-    }else{
-        [browserController setUrl:url];
-    }
     [_browserArray addObject:browserController];
     return browserController;
 }
@@ -96,14 +91,16 @@ static NSString * const reuseIdentifier = @"LKCell";
     // Configure the cell
     LKTabCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     BrowserViewController *browserController = _browserArray[indexPath.row];
-    UIGraphicsBeginImageContextWithOptions(browserController.view.bounds.size, NO, 0);
-    [browserController.view drawViewHierarchyInRect:browserController.view.bounds afterScreenUpdates:YES];
-    UIImage *copied = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:copied];
-    [[cell contentView] addSubview:imageView];
-    [imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [imageView setFrame:cell.contentView.frame];
+    UIView *snapshot = nil;
+    if (browserController.cover){
+        snapshot = [browserController.cover snapshotViewAfterScreenUpdates:YES];
+    }else{
+        snapshot = [[UIView alloc] init];
+        [snapshot setBackgroundColor:[UIColor whiteColor]];
+    }
+    [snapshot setContentMode:UIViewContentModeScaleAspectFit];
+    [snapshot setFrame:cell.contentView.frame];
+    [[cell contentView] addSubview:snapshot];
     return cell;
 }
 

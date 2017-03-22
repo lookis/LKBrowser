@@ -33,18 +33,14 @@
     LKTabCell *cell = (LKTabCell *)[tabViewController.collectionView cellForItemAtIndexPath:[[[tabViewController collectionView] indexPathsForSelectedItems] firstObject]];
     UIView * snapShotView = [[cell contentView] snapshotViewAfterScreenUpdates:NO];
     snapShotView.frame = [containerView convertRect:cell.contentView.frame fromView:cell.contentView.superview];
-    cell.contentView.hidden = YES;
     
-    browserController.view.frame = [transitionContext finalFrameForViewController:browserController];
     browserController.view.alpha = 0;
-    
     [containerView addSubview:snapShotView];
     [containerView addSubview:browserController.view];
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
         snapShotView.frame = browserController.view.frame;
     } completion:^(BOOL finish){
-        cell.contentView.hidden = NO;
         browserController.view.alpha = 1;
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
