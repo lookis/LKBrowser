@@ -26,14 +26,16 @@
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
     BrowserViewController *browserController   = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     LKTabManagerViewController *tabManagerViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    LKTabViewController *tabViewController = [tabManagerViewController tabViewController];
     UIView *containerView = [transitionContext containerView];
     
-    
-    LKTabCell *cell = (LKTabCell *)[tabViewController.collectionView cellForItemAtIndexPath:[[[tabViewController collectionView] indexPathsForSelectedItems] firstObject]];
-    UIView * snapShotView = [[cell contentView] snapshotViewAfterScreenUpdates:NO];
-    snapShotView.frame = [containerView convertRect:cell.contentView.frame fromView:cell.contentView.superview];
-    
+    UIView *snapShotView = nil;
+    if(browserController.cover){
+        snapShotView = browserController.cover;
+    }else{
+        snapShotView = [[UIView alloc] init];
+        [snapShotView setBackgroundColor:[UIColor whiteColor]];
+    }
+    snapShotView.frame = [containerView convertRect:tabManagerViewController.tabViewController.selectedFrame fromView:tabManagerViewController.tabViewController.collectionView];
     browserController.view.alpha = 0;
     [containerView addSubview:snapShotView];
     [containerView addSubview:browserController.view];
