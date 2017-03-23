@@ -27,7 +27,7 @@ profile_t profile;
     // Override point for customization after application launch.
     [Fabric with:@[[Crashlytics class]]];
 
-    [NSURLProtocol registerClass:[LKHTTPProtocol class]];
+//    [NSURLProtocol registerClass:[LKHTTPProtocol class]];
     NSLog(@"didFinishLaunchingWithOptions");
     return YES;
 }
@@ -76,6 +76,32 @@ profile_t profile;
         _backgroundIdentifier = UIBackgroundTaskInvalid;
     }
     if(!serverThread){
+        
+        NSFileManager* sharedFM = [NSFileManager defaultManager];
+        
+        NSArray<NSString *>* possibleDirs = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+        profile.acl = NULL;
+        if([possibleDirs count] >= 1) {
+            NSString *aclDir = [[possibleDirs objectAtIndex:0] stringByAppendingString:@"/me.lookis.acl"];
+            NSString *aclFile = [aclDir stringByAppendingString:@"/default.acl"];
+            NSLog(@"ACL path: %@", aclFile);
+            if ([sharedFM fileExistsAtPath:aclFile]){
+                NSLog(@"ACL exists");
+                profile.acl = [aclFile UTF8String];
+            }else{
+                NSError *error;
+                [sharedFM createDirectoryAtPath:aclDir withIntermediateDirectories:YES attributes:nil error:&error];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSURL  *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/shadowsocks/shadowsocks-libev/master/acl/gfwlist.acl"];
+                    NSData *urlData = [NSData dataWithContentsOfURL:url];
+                    if(urlData){
+                        [urlData writeToFile:aclFile atomically:YES];
+                        NSLog(@"ACL downloaded");
+                    }
+                });
+            }
+        }
+        
         profile.remote_host = "192.241.222.150";
         profile.local_addr = "127.0.0.1";
         profile.method = "aes-256-cfb";
@@ -83,7 +109,7 @@ profile_t profile;
         profile.remote_port = 8389;
         profile.local_port = 1081;
         profile.timeout = 300;
-        profile.acl = NULL;
+        
         profile.log = NULL;
         profile.fast_open = 1;
         profile.mode = 0;

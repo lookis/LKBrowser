@@ -11,7 +11,7 @@
 #import "LKAddressBarViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#define HOMEPAGE @"http://ip138.com"
+#define HOMEPAGE @"http://www.google.com"
 
 static float const PROGRESS_VIEW_INTERVAL = (float)1.0/60;
 static float const PROGRESS_VIEW_MAX_BEFORE_LOADED = (float)0.95;
@@ -170,7 +170,7 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 }
 - (IBAction)panRecognizer:(UIPanGestureRecognizer *)sender {
     CGPoint velocity = [sender velocityInView:_webView];
-    if (velocity.y > 100)   // panning down
+    if (velocity.y > 200)   // panning down
     {
         if (_bottomViewBottomConstraint.constant > 0){
             [[self view] layoutIfNeeded];
