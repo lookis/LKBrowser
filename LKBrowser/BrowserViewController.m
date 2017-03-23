@@ -11,7 +11,7 @@
 #import "LKAddressBarViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#define HOMEPAGE @"http://www.google.com"
+#define HOMEPAGE @"http://ip138.com"
 
 static float const PROGRESS_VIEW_INTERVAL = (float)1.0/60;
 static float const PROGRESS_VIEW_MAX_BEFORE_LOADED = (float)0.95;
@@ -106,7 +106,6 @@ static float const PROGRESS_VIEW_SUPPOSED_FINISH = (float)2.0;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    _cover = [self.view snapshotViewAfterScreenUpdates:NO];
     _addressInLoading = nil;
     [_addressBarController reloadData];
     NSLog(@"webView webViewDidFinishLoad:%@", [[[webView request] URL] absoluteString]);

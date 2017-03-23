@@ -11,6 +11,7 @@
 #import "LKTabTransitioning.h"
 #import "LKTabExitTransitioning.h"
 #import "BrowserViewController.h"
+#import <CoreImage/CoreImage.h>
 
 @interface LKTabViewController () <UIViewControllerTransitioningDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *cellLayout;
@@ -66,29 +67,38 @@ static NSString * const reuseIdentifier = @"LKCell";
     [_browserArray addObject:browserController];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[_browserArray count] - 1 inSection:0];
     [self setSelectedFrame:[self.collectionView cellForItemAtIndexPath:indexPath].frame];
-    [self presentViewController:[_browserArray firstObject] animated:YES completion:nil];
+    [self presentViewController:[_browserArray lastObject] animated:YES completion:nil];
 }
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [_browserArray count];
+    return [_browserArray count] + 1;
 }
 
 - (LKTabCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    // Configure the cell
     LKTabCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    BrowserViewController *browserController = _browserArray[indexPath.row];
-    UIView *snapshot = nil;
-    if (browserController.cover){
-        snapshot = [browserController.cover snapshotViewAfterScreenUpdates:YES];
+    if (indexPath.row >= [_browserArray count]) {
+        
+        CGFloat length = cell.contentView.frame.size.height > cell.contentView.frame.size.width? cell.contentView.frame.size.width: cell.contentView.frame.size.height;
+        UIImageView *addButton = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, length/2, length/2)];
+        [addButton setImage:[UIImage imageNamed:@"add"]];
+        [addButton setCenter:CGPointMake(cell.contentView.center.x, cell.contentView.center.x)];
+        [[cell contentView] addSubview:addButton];
+        
     }else{
-        snapshot = [[UIView alloc] init];
-        [snapshot setBackgroundColor:[UIColor whiteColor]];
+        BrowserViewController *browserController = _browserArray[indexPath.row];
+        UIView *snapshot = nil;
+        if (browserController.cover){
+            snapshot = [browserController.cover snapshotViewAfterScreenUpdates:YES];
+        }else{
+            snapshot = [[UIView alloc] init];
+            [snapshot setBackgroundColor:[UIColor whiteColor]];
+        }
+        [snapshot setContentMode:UIViewContentModeScaleAspectFit];
+        [snapshot setFrame:cell.contentView.frame];
+        [[cell contentView] addSubview:snapshot];
     }
-    [snapshot setContentMode:UIViewContentModeScaleAspectFit];
-    [snapshot setFrame:cell.contentView.frame];
-    [[cell contentView] addSubview:snapshot];
     //shadow and corner
     
     cell.contentView.layer.borderWidth = 1.0f;
@@ -108,9 +118,13 @@ static NSString * const reuseIdentifier = @"LKCell";
 #pragma mark <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self setSelectedFrame:[self.collectionView cellForItemAtIndexPath:indexPath].frame];
-    BrowserViewController *browserController = [_browserArray objectAtIndex:indexPath.row];
-    [self presentViewController:browserController animated:YES completion:nil];
+    if (indexPath.row >= [_browserArray count]) {
+        [self createDefaultTabAndPresent];
+    }else{
+        [self setSelectedFrame:[self.collectionView cellForItemAtIndexPath:indexPath].frame];
+        BrowserViewController *browserController = [_browserArray objectAtIndex:indexPath.row];
+        [self presentViewController:browserController animated:YES completion:nil];
+    }
 }
 
 
