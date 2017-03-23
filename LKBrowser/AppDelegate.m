@@ -27,7 +27,7 @@ profile_t profile;
     // Override point for customization after application launch.
     [Fabric with:@[[Crashlytics class]]];
 
-//    [NSURLProtocol registerClass:[LKHTTPProtocol class]];
+    [NSURLProtocol registerClass:[LKHTTPProtocol class]];
     NSLog(@"didFinishLaunchingWithOptions");
     return YES;
 }
