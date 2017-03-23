@@ -96,9 +96,9 @@ static NSString * const reuseIdentifier = @"LKCell";
     cell.contentView.layer.masksToBounds = YES;
     
     cell.layer.shadowColor = [UIColor darkGrayColor].CGColor;
-    cell.layer.shadowOffset = CGSizeMake(0, 2.0f);
-    cell.layer.shadowRadius = 5.0f;
-    cell.layer.shadowOpacity = 1.0f;
+    cell.layer.shadowOffset = CGSizeMake(0, 5.0f);
+    cell.layer.shadowRadius = 10.0f;
+    cell.layer.shadowOpacity = 0.2f;
     cell.layer.masksToBounds = NO;
     cell.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds cornerRadius:cell.contentView.layer.cornerRadius].CGPath;
     
