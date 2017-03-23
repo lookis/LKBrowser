@@ -89,6 +89,19 @@ static NSString * const reuseIdentifier = @"LKCell";
     [snapshot setContentMode:UIViewContentModeScaleAspectFit];
     [snapshot setFrame:cell.contentView.frame];
     [[cell contentView] addSubview:snapshot];
+    //shadow and corner
+    
+    cell.contentView.layer.borderWidth = 1.0f;
+    cell.contentView.layer.borderColor = [UIColor clearColor].CGColor;
+    cell.contentView.layer.masksToBounds = YES;
+    
+    cell.layer.shadowColor = [UIColor darkGrayColor].CGColor;
+    cell.layer.shadowOffset = CGSizeMake(0, 2.0f);
+    cell.layer.shadowRadius = 5.0f;
+    cell.layer.shadowOpacity = 1.0f;
+    cell.layer.masksToBounds = NO;
+    cell.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds cornerRadius:cell.contentView.layer.cornerRadius].CGPath;
+    
     return cell;
 }
 
