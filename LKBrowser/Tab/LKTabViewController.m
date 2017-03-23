@@ -83,7 +83,7 @@ static NSString * const reuseIdentifier = @"LKCell";
     if (indexPath.row >= [_browserArray count]) {
         CGFloat length = cell.contentView.frame.size.height > cell.contentView.frame.size.width? cell.contentView.frame.size.width: cell.contentView.frame.size.height;
         UIImageView *addButton = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, length/2, length/2)];
-        [addButton setImage:[UIImage imageNamed:@"add"]];
+        [addButton setImage:[UIImage imageNamed:@"Add"]];
         [addButton setCenter:CGPointMake(cell.contentView.center.x, cell.contentView.center.x)];
         [[cell contentView] addSubview:addButton];
         
