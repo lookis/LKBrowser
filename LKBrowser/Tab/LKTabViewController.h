@@ -12,7 +12,5 @@
 
 @interface LKTabViewController : UICollectionViewController
 @property (nonatomic) CGRect selectedFrame;
-
-- (BrowserViewController * _Nonnull)addEmptyTabWithURL:(NSString * _Nullable)url;
-
+- (void)createDefaultTabAndPresent;
 @end

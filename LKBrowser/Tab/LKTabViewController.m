@@ -40,25 +40,11 @@ static NSString * const reuseIdentifier = @"LKCell";
     CGRect rect = [[UIScreen mainScreen] bounds];
     CGSize size = CGSizeMake(rect.size.width/4, rect.size.height/4);
     [_cellLayout setItemSize:size];
-    if([_browserArray count] == 0){
-        [self addEmptyTabWithURL:@"http://www.ip138.com"];
-        [self addEmptyTabWithURL:@"http://www.ip138.com"];
-        [self addEmptyTabWithURL:@"http://www.ip138.com"];
-        [self addEmptyTabWithURL:@"http://www.ip138.com"];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(BrowserViewController *)addEmptyTabWithURL:(NSString *)url{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    BrowserViewController *browserController = [storyboard instantiateViewControllerWithIdentifier:@"browserViewController"];
-    [browserController setTransitioningDelegate:self];
-    [_browserArray addObject:browserController];
-    return browserController;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -69,10 +55,18 @@ static NSString * const reuseIdentifier = @"LKCell";
 -(void)viewDidAppear:(BOOL)animated{
     if(_firstLoading){
         _firstLoading = NO;
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self setSelectedFrame:[self.collectionView cellForItemAtIndexPath:indexPath].frame];
-        [self presentViewController:[_browserArray firstObject] animated:NO completion:nil];
+        [self createDefaultTabAndPresent];
     }
+}
+
+- (void)createDefaultTabAndPresent{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    BrowserViewController *browserController = [storyboard instantiateViewControllerWithIdentifier:@"browserViewController"];
+    [browserController setTransitioningDelegate:self];
+    [_browserArray addObject:browserController];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[_browserArray count] - 1 inSection:0];
+    [self setSelectedFrame:[self.collectionView cellForItemAtIndexPath:indexPath].frame];
+    [self presentViewController:[_browserArray firstObject] animated:YES completion:nil];
 }
 
 #pragma mark <UICollectionViewDataSource>
