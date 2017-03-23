@@ -12,6 +12,7 @@
 #import "LKTabExitTransitioning.h"
 #import "BrowserViewController.h"
 #import <CoreImage/CoreImage.h>
+#import "LKCellFlowLayout.h"
 
 @interface LKTabViewController () <UIViewControllerTransitioningDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *cellLayout;
@@ -78,8 +79,8 @@ static NSString * const reuseIdentifier = @"LKCell";
 
 - (LKTabCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LKTabCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    
     if (indexPath.row >= [_browserArray count]) {
-        
         CGFloat length = cell.contentView.frame.size.height > cell.contentView.frame.size.width? cell.contentView.frame.size.width: cell.contentView.frame.size.height;
         UIImageView *addButton = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, length/2, length/2)];
         [addButton setImage:[UIImage imageNamed:@"add"]];
@@ -90,7 +91,7 @@ static NSString * const reuseIdentifier = @"LKCell";
         BrowserViewController *browserController = _browserArray[indexPath.row];
         UIView *snapshot = nil;
         if (browserController.cover){
-            snapshot = [browserController.cover snapshotViewAfterScreenUpdates:YES];
+            snapshot = browserController.cover;
         }else{
             snapshot = [[UIView alloc] init];
             [snapshot setBackgroundColor:[UIColor whiteColor]];

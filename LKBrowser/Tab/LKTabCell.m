@@ -16,11 +16,22 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    [self layoutSubviews];
     return self;
 }
 
 - (void)prepareForReuse{
     [[[self contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    BOOL contentViewIsAutoresized = CGSizeEqualToSize(self.frame.size, self.contentView.frame.size);
+    if( !contentViewIsAutoresized) {
+        CGRect contentViewFrame = self.contentView.frame;
+        contentViewFrame.size = self.frame.size;
+        self.contentView.frame = contentViewFrame;
+    }
 }
 
 @end
