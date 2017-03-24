@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="G2G-ut-N1G">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="G2G-ut-N1G">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -45,7 +45,7 @@
         <scene sceneID="KGQ-rX-RkK">
             <objects>
                 <collectionViewController id="RRx-jS-O09" customClass="LKTabViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="NRV-ci-hki">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="NRV-ci-hki">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -162,15 +162,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                 <subviews>
                                     <progressView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="41H-7T-zhi">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                        <rect key="frame" x="0.0" y="18.5" width="320" height="2.5"/>
                                     </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="41H-7T-zhi" firstAttribute="top" secondItem="WuS-BF-wLi" secondAttribute="top" id="3ck-gS-Yp9"/>
-                                    <constraint firstItem="41H-7T-zhi" firstAttribute="bottom" secondItem="WuS-BF-wLi" secondAttribute="bottom" id="78C-YX-Tye"/>
-                                    <constraint firstAttribute="height" constant="20" id="Niu-Lh-fuX"/>
+                                    <constraint firstItem="41H-7T-zhi" firstAttribute="bottom" secondItem="WuS-BF-wLi" secondAttribute="bottom" id="WGX-Hh-mU9"/>
                                     <constraint firstItem="41H-7T-zhi" firstAttribute="trailing" secondItem="WuS-BF-wLi" secondAttribute="trailing" id="Zht-pW-c94"/>
+                                    <constraint firstAttribute="height" constant="20" id="qJc-wg-oLe"/>
                                     <constraint firstItem="41H-7T-zhi" firstAttribute="leading" secondItem="WuS-BF-wLi" secondAttribute="leading" id="yBO-Uu-5ok"/>
                                 </constraints>
                             </view>
