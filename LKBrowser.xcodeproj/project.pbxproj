@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		532D0D081E85EDEE00C44087 /* LKProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 532D0D071E85EDEE00C44087 /* LKProxy.m */; };
+		532D0D0A1E85FC3100C44087 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 532D0D091E85FC3100C44087 /* settings.plist */; };
 		5370E8541E7EB7F9009DDAE1 /* LKAddressBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5370E8531E7EB7F9009DDAE1 /* LKAddressBarViewController.m */; };
 		537A3B1E1E79882200BA76F1 /* LKTabCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 537A3B1D1E79882200BA76F1 /* LKTabCell.m */; };
 		537C0E571E710D1500BE58D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 537C0E561E710D1500BE58D7 /* main.m */; };
@@ -35,6 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		532D0D061E85EDEE00C44087 /* LKProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKProxy.h; path = Proxy/LKProxy.h; sourceTree = "<group>"; };
+		532D0D071E85EDEE00C44087 /* LKProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKProxy.m; path = Proxy/LKProxy.m; sourceTree = "<group>"; };
+		532D0D091E85FC3100C44087 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		5370E8521E7EB7F9009DDAE1 /* LKAddressBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKAddressBarViewController.h; sourceTree = "<group>"; };
 		5370E8531E7EB7F9009DDAE1 /* LKAddressBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKAddressBarViewController.m; sourceTree = "<group>"; };
 		537A3B1C1E79882200BA76F1 /* LKTabCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKTabCell.h; path = Tab/LKTabCell.h; sourceTree = "<group>"; };
@@ -115,6 +120,15 @@
 			path = LKBrowser/3rd;
 			sourceTree = "<group>";
 		};
+		532D0D031E85E35A00C44087 /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				532D0D061E85EDEE00C44087 /* LKProxy.h */,
+				532D0D071E85EDEE00C44087 /* LKProxy.m */,
+			);
+			name = Proxy;
+			sourceTree = "<group>";
+		};
 		537C0E491E710D1500BE58D7 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +149,8 @@
 		537C0E541E710D1500BE58D7 /* LKBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				532D0D091E85FC3100C44087 /* settings.plist */,
+				532D0D031E85E35A00C44087 /* Proxy */,
 				537C0E741E715F9800BE58D7 /* Networking */,
 				537C0E6D1E7131B500BE58D7 /* Tab */,
 				537C0E581E710D1500BE58D7 /* AppDelegate.h */,
@@ -253,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				537C0E651E710D1500BE58D7 /* LaunchScreen.storyboard in Resources */,
+				532D0D0A1E85FC3100C44087 /* settings.plist in Resources */,
 				537C0E621E710D1500BE58D7 /* Assets.xcassets in Resources */,
 				537C0E601E710D1500BE58D7 /* Main.storyboard in Resources */,
 			);
@@ -282,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53D07C9B1E81809800484C7D /* LKTabExitTransitioning.m in Sources */,
+				532D0D081E85EDEE00C44087 /* LKProxy.m in Sources */,
 				5370E8541E7EB7F9009DDAE1 /* LKAddressBarViewController.m in Sources */,
 				53CC32751E80E1B500F29097 /* LKTabManagerViewController.m in Sources */,
 				537C0E5D1E710D1500BE58D7 /* BrowserViewController.m in Sources */,

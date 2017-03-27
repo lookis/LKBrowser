@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>acl</key>
+	<string></string>
+	<key>proxy</key>
+	<dict>
+		<key>update_url</key>
+		<string></string>
+		<key>default</key>
+		<dict>
+			<key>remote_host</key>
+			<string>192.241.222.150</string>
+			<key>local_addr</key>
+			<string>127.0.0.1</string>
+			<key>method</key>
+			<string>aes-256-cfb</string>
+			<key>password</key>
+			<string>12345679</string>
+			<key>remote_port</key>
+			<real>8389</real>
+			<key>local_port</key>
+			<real>1081</real>
+			<key>timeout</key>
+			<integer>300</integer>
+			<key>fast_open</key>
+			<integer>1</integer>
+			<key>mode</key>
+			<integer>0</integer>
+			<key>verbose</key>
+			<integer>1</integer>
+			<key>mptcp</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>
